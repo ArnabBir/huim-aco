@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class TrieUtilsTest {
 
     @Test
@@ -22,7 +24,7 @@ public class TrieUtilsTest {
         trieUtils.insert(trie, Arrays.asList("b", "y"));
         trieUtils.insert(trie, Arrays.asList("b", "y", "e"));
         trieUtils.insert(trie, Arrays.asList("t", "h", "e", "i", "r"));
-        System.out.println(trie.getRoot());
+        System.out.println(trie);
 
     }
 
@@ -41,12 +43,10 @@ public class TrieUtilsTest {
         trieUtils.insert(trie, Arrays.asList("b", "y", "e"));
         trieUtils.insert(trie, Arrays.asList("t", "h", "e", "i", "r"));
 
-        System.out.println(trieUtils.search(trie, Arrays.asList("t", "h", "e", "i", "r")));
-        System.out.println(trieUtils.search(trie, Arrays.asList("t", "h", "e", "i")));
-        System.out.println(trieUtils.search(trie, Arrays.asList("a", "n", "y")));
-        System.out.println(trieUtils.search(trie, Arrays.asList("b", "y", "e", "e")));
-
-       // Assertions.assertEquals("w", trieUtils.search(trie, "w"));
+        assertEquals(true, trieUtils.search(trie, Arrays.asList("t", "h", "e", "i", "r")));
+        assertEquals(false, trieUtils.search(trie, Arrays.asList("t", "h", "e", "i")));
+        assertEquals(true, trieUtils.search(trie, Arrays.asList("a", "n", "y")));
+        assertEquals(false, trieUtils.search(trie, Arrays.asList("b", "y", "e", "e")));
     }
 
     @Test

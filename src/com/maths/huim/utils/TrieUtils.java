@@ -3,6 +3,7 @@ package com.maths.huim.utils;
 import com.maths.huim.models.Trie;
 import com.maths.huim.models.TrieNode;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -96,5 +97,14 @@ public class TrieUtils {
         }
 
         return false;
+    }
+
+    public List<List<String>> getItemSetsList(Trie trie) {
+
+        List<List<String>> itemSetsList = new ArrayList<>();
+
+        for(Map.Entry<String, TrieNode> node : trie.getRoot().getChildren().entrySet()) {
+            if(node.getValue().isLeaf())
+        }
     }
 }

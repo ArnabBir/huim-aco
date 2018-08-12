@@ -1,9 +1,5 @@
 package com.maths.huim.models;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class Trie {
 
     private TrieNode root;
@@ -18,5 +14,10 @@ public class Trie {
 
     public void setRoot(TrieNode root) {
         this.root = root;
+    }
+
+    @Override
+    public String toString() {
+        return "{ " + this.root.getKeyItem() + " -> {" + this.root + " } }";
     }
 }

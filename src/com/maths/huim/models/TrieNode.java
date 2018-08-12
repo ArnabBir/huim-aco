@@ -1,29 +1,30 @@
 package com.maths.huim.models;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class TrieNode {
 
-//    private String item;
+//    private String keyItem;
 //    private HashMap<String, TrieNode> children = new HashMap<String, TrieNode>();
 //    private boolean isLeaf;
 
-    String item;
+    String keyItem;
     HashMap<String, TrieNode> children = new HashMap<String, TrieNode>();
     boolean isLeaf;
 
     public TrieNode() {}
 
-    public TrieNode(String item){
-        this.item = item;
+    public TrieNode(String keyItem){
+        this.keyItem = keyItem;
     }
 
-    public String getItem() {
-        return this.item;
+    public String getKeyItem() {
+        return this.keyItem;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setKeyItem(String keyItem) {
+        this.keyItem = keyItem;
     }
 
     public HashMap<String, TrieNode> getChildren() {
@@ -44,6 +45,13 @@ public class TrieNode {
 
     @Override
     public String toString() {
-        return String.valueOf(/*this.item + " -> " +*/ children);
+
+        String trieString = "";
+        for(Map.Entry<String, TrieNode> node : this.children.entrySet()) {
+            trieString += node.getKey() + " -> {" + node.getValue() + " } ";
+        }
+        return trieString;
+        //trieString += "] ";
+        //return String.valueOf(/*this.keyItem + " -> " +*/ children);
     }
 }
