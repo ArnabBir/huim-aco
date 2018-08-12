@@ -1,22 +1,25 @@
 package com.maths.huim.models;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TrieNode {
 
-//    private String keyItem;
-//    private HashMap<String, TrieNode> children = new HashMap<String, TrieNode>();
-//    private boolean isLeaf;
+    private String keyItem;
+    private List<String> itemSet;
+    private HashMap<String, TrieNode> children;
+    private boolean isLeaf;
 
-    String keyItem;
-    HashMap<String, TrieNode> children = new HashMap<String, TrieNode>();
-    boolean isLeaf;
+    public TrieNode() {
 
-    public TrieNode() {}
+        this.keyItem = "";
+        this.itemSet = new ArrayList<>();
+        this.children = new HashMap<String, TrieNode>();
+        this.isLeaf = false;
+    }
 
     public TrieNode(String keyItem){
         this.keyItem = keyItem;
+        this.setItemSet(Arrays.asList(keyItem));
     }
 
     public String getKeyItem() {
@@ -25,6 +28,14 @@ public class TrieNode {
 
     public void setKeyItem(String keyItem) {
         this.keyItem = keyItem;
+    }
+
+    public List<String> getItemSet() {
+        return itemSet;
+    }
+
+    public void setItemSet(List<String> itemSet) {
+        this.itemSet = itemSet;
     }
 
     public HashMap<String, TrieNode> getChildren() {
@@ -51,7 +62,5 @@ public class TrieNode {
             trieString += node.getKey() + " -> {" + node.getValue() + " } ";
         }
         return trieString;
-        //trieString += "] ";
-        //return String.valueOf(/*this.keyItem + " -> " +*/ children);
     }
 }

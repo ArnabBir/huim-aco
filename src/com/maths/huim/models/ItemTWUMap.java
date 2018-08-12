@@ -4,7 +4,7 @@ import com.maths.huim.api.ItemParamMap;
 
 import java.util.Map;
 
-public class ItemUnitProfitMap implements ItemParamMap {
+public class ItemTWUMap implements ItemParamMap {
 
     private Map<String, Long> map;
 
@@ -24,13 +24,12 @@ public class ItemUnitProfitMap implements ItemParamMap {
         return map.put(key, value);
     }
 
-    public Long getUnitProfit(String key) {
+    public Long getTWU(String key) {
         return getParam(key);
     }
 
-    public Long setUnitProfit(String key, Long value) {
+    public Long setTWU(String key, Long value) {
         return setParam(key, value);
     }
-
 
 }

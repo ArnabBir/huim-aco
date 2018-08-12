@@ -1,5 +1,6 @@
 package com.maths.huim.models;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Transaction {
@@ -9,10 +10,18 @@ public class Transaction {
     private long totalUtil;
 
 
+
+
     public Transaction(long tid, Map<String, Long> itemCountMap, long totalUtil) {
         this.tid = tid;
         this.itemCountMap = itemCountMap;
         this.totalUtil = totalUtil;
+    }
+
+    public Transaction(long tid) {
+        this.tid = tid;
+        this.itemCountMap = new HashMap<String, Long>();
+        totalUtil = 0;
     }
 
 

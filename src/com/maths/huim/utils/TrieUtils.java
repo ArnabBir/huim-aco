@@ -12,13 +12,13 @@ public class TrieUtils {
 
     public TrieUtils(){}
 
-    public void insert(Trie trie, List<String> word) {
+    public void insert(Trie trie, List<String> itemSet) {
 
         HashMap<String, TrieNode> children = trie.getRoot().getChildren();
 
-        for(int i = 0; i < word.size(); ++i) {
+        for(int i = 0; i < itemSet.size(); ++i) {
 
-            String item = word.get(i);
+            String item = itemSet.get(i);
             TrieNode t;
 
             if(children.containsKey(item)){
@@ -31,8 +31,9 @@ public class TrieUtils {
             children = t.getChildren();
 
             //set leaf node
-            if(i==word.size()-1) {
+            if(i==itemSet.size()-1) {
                 t.setLeaf(true);
+                t.setItemSet(itemSet);
             }
         }
     }
@@ -99,12 +100,12 @@ public class TrieUtils {
         return false;
     }
 
-    public List<List<String>> getItemSetsList(Trie trie) {
-
-        List<List<String>> itemSetsList = new ArrayList<>();
-
-        for(Map.Entry<String, TrieNode> node : trie.getRoot().getChildren().entrySet()) {
-            if(node.getValue().isLeaf())
-        }
-    }
+//    public List<List<String>> getItemSetsList(Trie trie) {
+//
+//        List<List<String>> itemSetsList = new ArrayList<>();
+//
+//        for(Map.Entry<String, TrieNode> node : trie.getRoot().getChildren().entrySet()) {
+//            if(node.getValue().isLeaf())
+//        }
+//    }
 }
