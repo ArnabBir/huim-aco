@@ -3,7 +3,10 @@ package test;
 import com.maths.huim.api.ItemParamMap;
 import com.maths.huim.dao.ItemUnitProfitMapDao;
 import com.maths.huim.dao.TransactionDao;
-import com.maths.huim.models.ItemTWUMap;
+import com.maths.huim.impl.ItemTwuMapImpl;
+import com.maths.huim.impl.ItemUtilityTableImpl;
+import com.maths.huim.models.ItemUnitProfitMap;
+import com.maths.huim.models.ItemUtilityTable;
 import com.maths.huim.models.Transaction;
 import org.junit.jupiter.api.Test;
 
@@ -14,32 +17,23 @@ public class POC {
     @Test
     public void sanityTest() {
 
+        // Fetching item unit profit
         ItemUnitProfitMapDao itemUnitProfitMapDao = new ItemUnitProfitMapDao();
-        ItemParamMap itemUnitProfitMap = itemUnitProfitMapDao.fetch("base_test");
+        ItemUnitProfitMap itemUnitProfitMap = itemUnitProfitMapDao.fetch("base_test");
         System.out.println(itemUnitProfitMap);
 
+        // Fetching transactions
         List<Transaction> transactions = (new TransactionDao()).fetch("base_test");
         System.out.println(transactions);
 
-        ItemParamMap itemTWUMap = new ItemTWUMap();
-        Map<String, Long> twuMap = new HashMap<String, Long>();
+        // Calculating item twu map
+        ItemTwuMapImpl itemTwuMapImpl = new ItemTwuMapImpl();
+        ItemParamMap itemTWUMap = itemTwuMapImpl.calculate(transactions, itemUnitProfitMap);
+        System.out.println(itemTWUMap);
 
-        for(Transaction transaction : transactions) {
-            for(Map.Entry<String, Long> pair : itemUnitProfitMap.getMap().entrySet()) {
-                if(transaction.getItemCountMap().containsKey(pair.getKey())) {
-                    if(twuMap.containsKey(pair.getKey())) {
-                        twuMap.put(pair.getKey(), transaction.getTotalUtil() + twuMap.get(pair.getKey()));
-
-                    }
-                    else {
-                        twuMap.put(pair.getKey(), transaction.getTotalUtil());
-                    }
-                }
-            }
-        }
-
-        System.out.println(twuMap);
-
+        // Calculating Item Utility Mapping
+        Map<String, ItemUtilityTable> itemUtilityTableMap = (new ItemUtilityTableImpl()).calculate(transactions, itemUnitProfitMap);
+        System.out.println(itemUtilityTableMap);
     }
 
 }

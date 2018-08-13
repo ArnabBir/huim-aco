@@ -4,9 +4,13 @@ import com.maths.huim.api.ItemParamMap;
 
 import java.util.Map;
 
-public class ItemTWUMap implements ItemParamMap {
+public class ItemTwuMap implements ItemParamMap {
 
     private Map<String, Long> map;
+
+    public ItemTwuMap(Map<String, Long> map) {
+        this.map = map;
+    }
 
     public Map<String, Long> getMap() {
         return map;
@@ -32,4 +36,10 @@ public class ItemTWUMap implements ItemParamMap {
         return setParam(key, value);
     }
 
+    @Override
+    public String toString() {
+        return "ItemTwuMap{" +
+                "map=" + map +
+                '}';
+    }
 }

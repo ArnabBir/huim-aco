@@ -5,31 +5,31 @@ import java.util.Map;
 
 public class Transaction {
 
-    private long tid;
+    private int tid;
     private Map<String, Long> itemCountMap;
     private long totalUtil;
 
 
 
 
-    public Transaction(long tid, Map<String, Long> itemCountMap, long totalUtil) {
+    public Transaction(int tid, Map<String, Long> itemCountMap, long totalUtil) {
         this.tid = tid;
         this.itemCountMap = itemCountMap;
         this.totalUtil = totalUtil;
     }
 
-    public Transaction(long tid) {
+    public Transaction(int tid) {
         this.tid = tid;
         this.itemCountMap = new HashMap<String, Long>();
         totalUtil = 0;
     }
 
 
-    public long getTid() {
+    public int getTid() {
         return tid;
     }
 
-    public void setTid(long tid) {
+    public void setTid(int tid) {
         this.tid = tid;
     }
 
