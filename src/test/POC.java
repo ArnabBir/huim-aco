@@ -1,6 +1,7 @@
 package test;
 
 import com.maths.huim.api.ItemParamMap;
+import com.maths.huim.dao.TransactionDao;
 import com.maths.huim.models.ItemTWUMap;
 import com.maths.huim.models.ItemUnitProfitMap;
 import com.maths.huim.models.Transaction;
@@ -33,22 +34,7 @@ public class POC {
 
         ItemParamMap itemTWUMap = new ItemTWUMap();
 
-        List<Transaction> transactions = new ArrayList<>();
-
-        for(int i = 0; i < tr.size(); ++i) {
-
-            Map<String, Long> itemCountMap = new HashMap<String, Long>();
-            List<String> trComponents = Arrays.asList(tr.get(i).split(":"));
-            List<String> itemset = Arrays.asList(trComponents.get(0).split(" "));
-            List<String> counts = Arrays.asList(trComponents.get(2).split(" "));
-
-            for(int j = 0; j < itemset.size(); ++j) {
-                itemCountMap.put(itemset.get(j), Long.parseLong(counts.get(j)));
-            }
-
-            transactions.add(new Transaction(i+1, itemCountMap, Long.parseLong(trComponents.get(1))));
-        }
-
+        List<Transaction> transactions = (new TransactionDao()).fetch("base_test");
         System.out.println(transactions);
     }
 
