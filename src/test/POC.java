@@ -1,9 +1,9 @@
 package test;
 
 import com.maths.huim.api.ItemParamMap;
+import com.maths.huim.dao.ItemUnitProfitMapDao;
 import com.maths.huim.dao.TransactionDao;
 import com.maths.huim.models.ItemTWUMap;
-import com.maths.huim.models.ItemUnitProfitMap;
 import com.maths.huim.models.Transaction;
 import org.junit.jupiter.api.Test;
 
@@ -14,28 +14,32 @@ public class POC {
     @Test
     public void sanityTest() {
 
-        Map<String, Long> twu = new HashMap<String, Long>() {{
-           put("1", Long.valueOf(4));
-           put("2", Long.valueOf(3));
-           put("3", Long.valueOf(1));
-           put("4", Long.valueOf(2));
-           put("5", Long.valueOf(1));
-           put("6", Long.valueOf(4));
-
-        }};
-
-        List<String> tr = new ArrayList<String>();
-        tr.add("1 2 3 5:26:3 3 2 3");
-        tr.add("2 4:20:2 7");
-        tr.add("1 3 4 5:25:2 5 5 2");
-        tr.add("1 3 4 5 6:29:1 6 5 1 2");
-
-        ItemParamMap itemUnitProfitMap = new ItemUnitProfitMap();
-
-        ItemParamMap itemTWUMap = new ItemTWUMap();
+        ItemUnitProfitMapDao itemUnitProfitMapDao = new ItemUnitProfitMapDao();
+        ItemParamMap itemUnitProfitMap = itemUnitProfitMapDao.fetch("base_test");
+        System.out.println(itemUnitProfitMap);
 
         List<Transaction> transactions = (new TransactionDao()).fetch("base_test");
         System.out.println(transactions);
+
+        ItemParamMap itemTWUMap = new ItemTWUMap();
+        Map<String, Long> twuMap = new HashMap<String, Long>();
+
+        for(Transaction transaction : transactions) {
+            for(Map.Entry<String, Long> pair : itemUnitProfitMap.getMap().entrySet()) {
+                if(transaction.getItemCountMap().containsKey(pair.getKey())) {
+                    if(twuMap.containsKey(pair.getKey())) {
+                        twuMap.put(pair.getKey(), transaction.getTotalUtil() + twuMap.get(pair.getKey()));
+
+                    }
+                    else {
+                        twuMap.put(pair.getKey(), transaction.getTotalUtil());
+                    }
+                }
+            }
+        }
+
+        System.out.println(twuMap);
+
     }
 
 }

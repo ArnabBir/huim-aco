@@ -8,6 +8,10 @@ public class ItemUnitProfitMap implements ItemParamMap {
 
     private Map<String, Long> map;
 
+    public ItemUnitProfitMap(Map<String, Long> map) {
+        this.map = map;
+    }
+
     public Map<String, Long> getMap() {
         return map;
     }
@@ -33,4 +37,10 @@ public class ItemUnitProfitMap implements ItemParamMap {
     }
 
 
+    @Override
+    public String toString() {
+        return "ItemUnitProfitMap{" +
+                "map=" + map +
+                '}';
+    }
 }
