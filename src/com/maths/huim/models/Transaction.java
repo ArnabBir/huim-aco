@@ -9,9 +9,6 @@ public class Transaction {
     private Map<String, Long> itemCountMap;
     private long totalUtil;
 
-
-
-
     public Transaction(int tid, Map<String, Long> itemCountMap, long totalUtil) {
         this.tid = tid;
         this.itemCountMap = itemCountMap;
@@ -23,7 +20,6 @@ public class Transaction {
         this.itemCountMap = new HashMap<String, Long>();
         totalUtil = 0;
     }
-
 
     public int getTid() {
         return tid;
