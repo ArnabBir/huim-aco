@@ -33,34 +33,10 @@ public class POC {
         //Sorting Itemset
         ItemTwuMapUtils itemTwuMapUtils = new ItemTwuMapUtils();
         itemTwuMapUtils.sortDesc(itemTwuMap);
-        System.out.println(itemTwuMap);
+        System.out.println("Sorted Map = " + itemTwuMap);
 
         //Pruning Itemset
-        TransactionUtil transactionUtil = new TransactionUtil();
-        Map<String, Long> prunedMap = new LinkedHashMap<String, Long>();
-        for(Map.Entry<String, Long> pair : itemTwuMap.getMap().entrySet()) {
-            if(pair.getValue() < Constants.minUtil) {
-
-                for (final ListIterator<Transaction> itrTrn = transactions.listIterator(); itrTrn.hasNext();) {
-                    Transaction transaction = itrTrn.next();
-                    if(transaction.getItemCountMap().containsKey(pair.getKey())) {
-                        transaction.setTotalUtil(transaction.getTotalUtil() - transaction.getItemCountMap().get(pair.getKey()) * itemUnitProfitMap.getMap().get(pair.getKey()));
-                        itrTrn.set(transaction);
-                    }
-                }
-//                for(int i = 0; i < transactions.size(); ++i) {
-//                    if(transactions.get(i).getItemCountMap().containsKey(pair.getKey())) {
-//
-//                        transactionUtil.
-//                        transactionUtil.updateItemCountMap(transactions.get(i), pair.getKey(),
-//                                pair.getValue() - transactions.get(i).getItemCountMap().get(pair.getKey()) * itemUnitProfitMap.getMap().get(pair.getKey()));
-//                    }
-//                }
-            }
-            else    prunedMap.put(pair.getKey(), pair.getValue());
-        }
-
-        itemTwuMap.setMap(prunedMap);
+        itemTwuMapUtils.prune(transactions, itemTwuMap, itemUnitProfitMap);
         System.out.println("Pruned Map = " + itemTwuMap);
 
         // Calculating Item Utility Mapping
