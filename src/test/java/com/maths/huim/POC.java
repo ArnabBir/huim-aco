@@ -49,19 +49,19 @@ public class POC {
 
     @Test
     public void asulaTest() {
-        TspProblemConfiguration configurationProvider = new TspProblemConfiguration(problemRepresentation);
-        AntColony<Integer, TspEnvironment> colony = getAntColony(configurationProvider);
-        TspEnvironment environment = new TspEnvironment(problemRepresentation);
-
-        AcoProblemSolver<Integer, TspEnvironment> solver = new AcoProblemSolver<>();
-        solver.initialize(environment, colony, configurationProvider);
-        solver.addDaemonActions(new StartPheromoneMatrix<Integer, TspEnvironment>(),
-                new PerformEvaporation<Integer, TspEnvironment>());
-
-        solver.addDaemonActions(getPheromoneUpdatePolicy());
-
-        solver.getAntColony().addAntPolicies(new RandomNodeSelection<Integer, TspEnvironment>());
-        solver.solveProblem();
+//        TspProblemConfiguration configurationProvider = new TspProblemConfiguration(problemRepresentation);
+//        AntColony<Integer, TspEnvironment> colony = getAntColony(configurationProvider);
+//        TspEnvironment environment = new TspEnvironment(problemRepresentation);
+//
+//        AcoProblemSolver<Integer, TspEnvironment> solver = new AcoProblemSolver<>();
+//        solver.initialize(environment, colony, configurationProvider);
+//        solver.addDaemonActions(new StartPheromoneMatrix<Integer, TspEnvironment>(),
+//                new PerformEvaporation<Integer, TspEnvironment>());
+//
+//        solver.addDaemonActions(getPheromoneUpdatePolicy());
+//
+//        solver.getAntColony().addAntPolicies(new RandomNodeSelection<Integer, TspEnvironment>());
+//        solver.solveProblem();
     }
 
 }

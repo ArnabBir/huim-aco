@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="huim-aco" target="1.5" />
+      <module name="huim-aco" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
