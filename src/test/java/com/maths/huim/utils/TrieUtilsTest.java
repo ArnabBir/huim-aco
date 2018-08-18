@@ -1,11 +1,8 @@
 package com.maths.huim.utils;
 
 import com.maths.huim.models.Trie;
-import org.junit.jupiter.api.Test;
-
+import org.junit.*;
 import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TrieUtilsTest {
 
@@ -42,10 +39,10 @@ public class TrieUtilsTest {
         trieUtils.insert(trie, Arrays.asList("b", "y", "e"));
         trieUtils.insert(trie, Arrays.asList("t", "h", "e", "i", "r"));
 
-        assertEquals(true, trieUtils.search(trie, Arrays.asList("t", "h", "e", "i", "r")));
-        assertEquals(false, trieUtils.search(trie, Arrays.asList("t", "h", "e", "i")));
-        assertEquals(true, trieUtils.search(trie, Arrays.asList("a", "n", "y")));
-        assertEquals(false, trieUtils.search(trie, Arrays.asList("b", "y", "e", "e")));
+        Assert.assertEquals(true, trieUtils.search(trie, Arrays.asList("t", "h", "e", "i", "r")));
+        Assert.assertEquals(false, trieUtils.search(trie, Arrays.asList("t", "h", "e", "i")));
+        Assert.assertEquals(true, trieUtils.search(trie, Arrays.asList("a", "n", "y")));
+        Assert.assertEquals(false, trieUtils.search(trie, Arrays.asList("b", "y", "e", "e")));
     }
 
     @Test
