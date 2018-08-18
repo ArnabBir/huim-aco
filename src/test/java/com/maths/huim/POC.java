@@ -4,10 +4,8 @@ import com.maths.huim.dao.ItemUnitProfitMapDao;
 import com.maths.huim.dao.TransactionDao;
 import com.maths.huim.impl.ItemTwuMapImpl;
 import com.maths.huim.impl.ItemUtilityTableImpl;
-import com.maths.huim.models.ItemTwuMap;
-import com.maths.huim.models.ItemUnitProfitMap;
-import com.maths.huim.models.ItemUtilityTable;
-import com.maths.huim.models.Transaction;
+import com.maths.huim.models.*;
+import com.maths.huim.utils.AntRoutingGraphUtils;
 import com.maths.huim.utils.ItemTwuMapUtils;
 
 import org.junit.*;
@@ -47,6 +45,11 @@ public class POC {
         // Calculating Item Utility Mapping
         Map<String, ItemUtilityTable> itemUtilityTableMap = (new ItemUtilityTableImpl()).calculate(transactions, itemUnitProfitMap, itemTwuMap);
         System.out.println(itemUtilityTableMap);
+
+        //Get the initial graph
+        AntRoutingGraphUtils antRoutingGraphUtils = new AntRoutingGraphUtils();
+        AntRoutingGraph antRoutingGraph = antRoutingGraphUtils.init(itemTwuMap);
+        System.out.println(antRoutingGraph);
     }
 
     @Test
