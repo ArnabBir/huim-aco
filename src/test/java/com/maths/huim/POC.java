@@ -11,6 +11,8 @@ import com.maths.huim.utils.ItemTwuMapUtils;
 import org.junit.*;
 
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -43,13 +45,27 @@ public class POC {
         System.out.println("Pruned Map = " + itemTwuMap);
 
         // Calculating Item Utility Mapping
-        Map<String, ItemUtilityTable> itemUtilityTableMap = (new ItemUtilityTableImpl()).calculate(transactions, itemUnitProfitMap, itemTwuMap);
+        ItemUtilityTableImpl itemUtilityTableImpl = new ItemUtilityTableImpl();
+        Map<List<String>, ItemUtilityTable> itemUtilityTableMap = itemUtilityTableImpl.init(transactions, itemUnitProfitMap, itemTwuMap);
         System.out.println(itemUtilityTableMap);
+        boolean var = itemUtilityTableMap.containsKey(Arrays.asList("1"));
+        System.out.println(var);
+
+        // Calcualte union of 2 tables
+        ItemUtilityTable itemUtilityTable = itemUtilityTableImpl.union(itemUtilityTableMap.get(Arrays.asList( "1")), itemUtilityTableMap.get(Arrays.asList( "3")));
+        System.out.println(" Union of 1 and 3 : ");
+        System.out.println(itemUtilityTable);
+        itemUtilityTableMap.put(itemUtilityTable.getItemSet(), itemUtilityTable);
+        itemUtilityTable = itemUtilityTableImpl.union(itemUtilityTableMap.get(Arrays.asList( "1", "3")), itemUtilityTableMap.get(Arrays.asList( "4")));
+        System.out.println(" Union of 1, 3 and 4 : ");
+        System.out.println(itemUtilityTable);
 
         //Get the initial graph
         AntRoutingGraphUtils antRoutingGraphUtils = new AntRoutingGraphUtils();
         AntRoutingGraph antRoutingGraph = antRoutingGraphUtils.init(itemTwuMap);
         System.out.println(antRoutingGraph);
+
+
     }
 
     @Test

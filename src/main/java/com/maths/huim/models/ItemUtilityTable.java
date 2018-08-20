@@ -1,26 +1,27 @@
 package com.maths.huim.models;
 
+import java.util.List;
 import java.util.Map;
 
 public class ItemUtilityTable {
 
-    private String item;
+    private List<String> itemSet;
     private Map<Integer, ItemTransactionUtility> itemTransactionUtilities;
 
-    public ItemUtilityTable(String item, Map<Integer, ItemTransactionUtility> itemTransactionUtilities) {
-        this.item = item;
+    public ItemUtilityTable(List<String> itemSet, Map<Integer, ItemTransactionUtility> itemTransactionUtilities) {
+        this.itemSet = itemSet;
         this.itemTransactionUtilities = itemTransactionUtilities;
     }
 
     public ItemUtilityTable() { }
 
 
-    public String getItem() {
-        return item;
+    public List<String> getItemSet() {
+        return itemSet;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setItemSet(List<String> itemSet) {
+        this.itemSet = itemSet;
     }
 
     public Map<Integer, ItemTransactionUtility> getItemTransactionUtilities() {
@@ -34,7 +35,7 @@ public class ItemUtilityTable {
     @Override
     public String toString() {
         return "ItemUtilityTable{" +
-                "item='" + item + '\'' +
+                "itemSet='" + itemSet + '\'' +
                 ", itemTransactionUtilities=" + itemTransactionUtilities +
                 '}';
     }

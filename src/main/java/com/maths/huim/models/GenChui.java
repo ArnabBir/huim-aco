@@ -1,5 +1,6 @@
 package com.maths.huim.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GenChui {
@@ -22,7 +23,12 @@ public class GenChui {
         this.minUtil = minUtil;
     }
 
-    public GenChui() { }
+    public GenChui() {
+        this.itemSet = new ArrayList<String>();
+        this.prevSet = new ArrayList<String>();
+        this.postSet = new ArrayList<String>();
+        this.minUtil = Constants.minUtil;
+    }
 
     public List<String> getItemSet() {
         return itemSet;
