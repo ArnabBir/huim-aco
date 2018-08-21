@@ -61,4 +61,14 @@ public class GenChui {
     public void setMinUtil(double minUtil) {
         this.minUtil = minUtil;
     }
+
+    @Override
+    public String toString() {
+        return "GenChui{" +
+                "itemSet=" + itemSet +
+                ", prevSet=" + prevSet +
+                ", postSet=" + postSet +
+                ", minUtil=" + minUtil +
+                '}';
+    }
 }

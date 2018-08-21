@@ -2,7 +2,6 @@ package com.maths.huim.impl;
 
 import com.maths.huim.models.*;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -30,7 +29,25 @@ public class ItemUtilityTableImpl {
         return itemUtilityTableMap;
     }
 
-    public ItemUtilityTable union(ItemUtilityTable table1, ItemUtilityTable table2) { // ASSUMING THE SECOND TABLE IS A PRIMARY ONE
+    public long sumItemUtility(ItemUtilityTable itemUtilityTable) {
+
+        long sum = 0;
+        for(Map.Entry<Integer, ItemTransactionUtility> pair : itemUtilityTable.getItemTransactionUtilities().entrySet()) {
+            sum += pair.getValue().getItemUtility();
+        }
+        return sum;
+    }
+
+    public long sumResidualUtility(ItemUtilityTable itemUtilityTable) {
+
+        long sum = 0;
+        for(Map.Entry<Integer, ItemTransactionUtility> pair : itemUtilityTable.getItemTransactionUtilities().entrySet()) {
+            sum += pair.getValue().getResidualUtility();
+        }
+        return sum;
+    }
+
+    public ItemUtilityTable computeClosure(ItemUtilityTable table1, ItemUtilityTable table2) { // ASSUMING THE SECOND TABLE IS A PRIMARY ONE
 
         List<String> unionItemSet = Stream.concat(table1.getItemSet().stream(), table2.getItemSet().stream()).collect(Collectors.toList());
 

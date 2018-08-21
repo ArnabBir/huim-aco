@@ -39,4 +39,5 @@ public class ItemUtilityTable {
                 ", itemTransactionUtilities=" + itemTransactionUtilities +
                 '}';
     }
+
 }
