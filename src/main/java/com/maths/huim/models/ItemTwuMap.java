@@ -2,6 +2,7 @@ package com.maths.huim.models;
 
 import com.maths.huim.api.ItemParamMap;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ItemTwuMap implements ItemParamMap {
@@ -34,6 +35,17 @@ public class ItemTwuMap implements ItemParamMap {
 
     public Long setTWU(String key, Long value) {
         return setParam(key, value);
+    }
+
+    public ItemTwuMap getPairRemoved(String s) {
+
+        Map<String, Long> newMap = new LinkedHashMap<>();
+        for(Map.Entry<String, Long> pair : this.map.entrySet()) {
+            if(!pair.getKey().equals(s)) {
+                newMap.put(pair.getKey(), pair.getValue());
+            }
+        }
+        return new ItemTwuMap(newMap);
     }
 
     @Override

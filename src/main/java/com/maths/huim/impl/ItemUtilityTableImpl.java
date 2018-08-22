@@ -32,6 +32,7 @@ public class ItemUtilityTableImpl {
     public long sumItemUtility(ItemUtilityTable itemUtilityTable) {
 
         long sum = 0;
+        System.out.println(itemUtilityTable);
         for(Map.Entry<Integer, ItemTransactionUtility> pair : itemUtilityTable.getItemTransactionUtilities().entrySet()) {
             sum += pair.getValue().getItemUtility();
         }
@@ -47,7 +48,7 @@ public class ItemUtilityTableImpl {
         return sum;
     }
 
-    public ItemUtilityTable computeClosure(ItemUtilityTable table1, ItemUtilityTable table2) { // ASSUMING THE SECOND TABLE IS A PRIMARY ONE
+    public ItemUtilityTable union(ItemUtilityTable table1, ItemUtilityTable table2) { // ASSUMING THE SECOND TABLE IS A PRIMARY ONE
 
         List<String> unionItemSet = Stream.concat(table1.getItemSet().stream(), table2.getItemSet().stream()).collect(Collectors.toList());
 

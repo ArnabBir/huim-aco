@@ -16,7 +16,7 @@ public class AntRoutingGraphNode {
 
         this.keyItem = "";
         this.itemSet = new ArrayList<String>();
-        this.children = new HashMap<String, AntRoutingGraphNode>();
+        this.children = new LinkedHashMap<String, AntRoutingGraphNode>();
         this.isLeaf = false;
         this.weight = 0;
         this.pheromone = Constants.tauBefore;
@@ -26,6 +26,10 @@ public class AntRoutingGraphNode {
     public AntRoutingGraphNode(String keyItem){
         this.keyItem = keyItem;
         this.setItemSet(Arrays.asList(keyItem));
+    }
+
+    public void addChild(AntRoutingGraphNode antRoutingGraphNode) {
+        this.children.put(antRoutingGraphNode.getKeyItem(), antRoutingGraphNode);
     }
 
     public double getWeight() {

@@ -12,7 +12,6 @@ import com.maths.huim.utils.ItemTwuMapUtils;
 import org.junit.*;
 
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class POC {
@@ -50,30 +49,35 @@ public class POC {
         boolean var = itemUtilityTableMap.containsKey(Arrays.asList("1"));
         System.out.println(var);
 
-        // Calcualte computeClosure of 2 tables
-        ItemUtilityTable itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(Arrays.asList( "1")), itemUtilityTableMap.get(Arrays.asList( "3")));
+        // Calcualte union of 2 tables
+        ItemUtilityTable itemUtilityTable = itemUtilityTableImpl.union(itemUtilityTableMap.get(Arrays.asList( "1")), itemUtilityTableMap.get(Arrays.asList( "3")));
         System.out.println(" Union of 1 and 3 : ");
         System.out.println(itemUtilityTable);
         itemUtilityTableMap.put(itemUtilityTable.getItemSet(), itemUtilityTable);
-        itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(Arrays.asList( "1", "3")), itemUtilityTableMap.get(Arrays.asList( "4")));
+        itemUtilityTable = itemUtilityTableImpl.union(itemUtilityTableMap.get(Arrays.asList( "1", "3")), itemUtilityTableMap.get(Arrays.asList( "4")));
         System.out.println(" Union of 1, 3 and 4 : ");
         System.out.println(itemUtilityTable);
 
         // Gen - CHUI
         GenChui genChui = new GenChui();
-        genChui.setItemSet(Arrays.asList("1"));
+        genChui.setItemSet(Collections.<String>emptyList());
         genChui.setPrevSet(Collections.<String>emptyList());
         List<String> postSet = new ArrayList<String>(itemTwuMap.getMap().keySet());
-        postSet.remove("1");
+        //postSet.remove("1");
         genChui.setPostSet(postSet);
         System.out.println(genChui);
         GenChuiImpl genChuiImpl = new GenChuiImpl();
-
+        List<List<String>> closedItemSets = new ArrayList<>();
+        genChuiImpl.execute(genChui, itemUtilityTableMap, closedItemSets);
+        System.out.println(closedItemSets);
 
         //Get the initial graph
+        System.out.println(itemTwuMap);
         AntRoutingGraphUtils antRoutingGraphUtils = new AntRoutingGraphUtils();
         AntRoutingGraph antRoutingGraph = antRoutingGraphUtils.init(itemTwuMap);
         System.out.println(antRoutingGraph);
+
+
 
 
     }

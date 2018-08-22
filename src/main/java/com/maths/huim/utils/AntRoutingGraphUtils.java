@@ -6,6 +6,7 @@ import com.maths.huim.models.Constants;
 import com.maths.huim.models.ItemTwuMap;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -15,20 +16,43 @@ public class AntRoutingGraphUtils {
 
     public AntRoutingGraph init(ItemTwuMap itemTwuMap) {    // TODO MAKE COMPLETE GRAPH
 
-        Map<String, AntRoutingGraphNode> map = new HashMap<String, AntRoutingGraphNode>();
-        AntRoutingGraphNode antRoutingGraphNode;
+//        Map<String, AntRoutingGraphNode> map = new HashMap<String, AntRoutingGraphNode>();
+//        AntRoutingGraphNode antRoutingGraphNode;
+//
+//        for(Map.Entry<String, Long> pair: itemTwuMap.getMap().entrySet()) {
+//            antRoutingGraphNode = new AntRoutingGraphNode();
+//            antRoutingGraphNode.setKeyItem(pair.getKey());
+//            antRoutingGraphNode.setPheromone(Constants.tauBefore);
+//            antRoutingGraphNode.setDesirability(pair.getValue());
+//            map.put(pair.getKey(), antRoutingGraphNode);
+//        }
+//
+//        AntRoutingGraphNode rootNode = new AntRoutingGraphNode();
+//        rootNode.setChildren(map);
+//        return new AntRoutingGraph(rootNode);
+        AntRoutingGraphNode antRoutingGraphNode = new AntRoutingGraphNode();
+        initGraph(antRoutingGraphNode, itemTwuMap);
+        return new AntRoutingGraph(antRoutingGraphNode);
+    }
 
+    public void initGraph(AntRoutingGraphNode antRoutingGraphNode, ItemTwuMap itemTwuMap) {
+
+
+        AntRoutingGraphNode childNode;
         for(Map.Entry<String, Long> pair: itemTwuMap.getMap().entrySet()) {
-            antRoutingGraphNode = new AntRoutingGraphNode();
-            antRoutingGraphNode.setKeyItem(pair.getKey());
-            antRoutingGraphNode.setPheromone(Constants.tauBefore);
-            antRoutingGraphNode.setDesirability(pair.getValue());
-            map.put(pair.getKey(), antRoutingGraphNode);
-        }
 
-        AntRoutingGraphNode rootNode = new AntRoutingGraphNode();
-        rootNode.setChildren(map);
-        return new AntRoutingGraph(rootNode);
+            childNode = new AntRoutingGraphNode();
+            childNode.setKeyItem(pair.getKey());
+            childNode.setPheromone(Constants.tauBefore);
+            childNode.setDesirability(pair.getValue());
+
+            //System.out.println(pair.getKey());
+            //System.out.println(itemTwuMap);
+            ItemTwuMap childTwuMap = itemTwuMap.getPairRemoved(pair.getKey());
+            System.out.println(childNode.getKeyItem());
+            antRoutingGraphNode.addChild(childNode);
+            initGraph(childNode, childTwuMap);
+        }
     }
 
     public void insert(AntRoutingGraph antRoutingGraph, List<String> itemSet) {
