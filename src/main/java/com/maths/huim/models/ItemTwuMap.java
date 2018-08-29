@@ -37,12 +37,27 @@ public class ItemTwuMap implements ItemParamMap {
         return setParam(key, value);
     }
 
+//    public ItemTwuMap getPairRemoved(String s) {
+//
+//        Map<String, Long> newMap = new LinkedHashMap<>();
+//        for(Map.Entry<String, Long> pair : this.map.entrySet()) {
+//            if(!pair.getKey().equals(s)) {
+//                newMap.put(pair.getKey(), pair.getValue());
+//            }
+//        }
+//        return new ItemTwuMap(newMap);
+//    }
+
     public ItemTwuMap getPairRemoved(String s) {
 
         Map<String, Long> newMap = new LinkedHashMap<>();
+        boolean found = false;
         for(Map.Entry<String, Long> pair : this.map.entrySet()) {
-            if(!pair.getKey().equals(s)) {
+            if(found) {
                 newMap.put(pair.getKey(), pair.getValue());
+            }
+            if(pair.getKey().equals(s)) {
+                found = true;
             }
         }
         return new ItemTwuMap(newMap);
