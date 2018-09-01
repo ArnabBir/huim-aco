@@ -14,36 +14,41 @@ public class GenChuiImpl {
         for(String itemJ : prevSetY) {
             Set<Integer> tidJ = itemUtilityTableMap.get(Arrays.asList(itemJ)).getItemTransactionUtilities().keySet();
             Set<Integer> tidY = itemUtilityTableMap.get(itemSetY).getItemTransactionUtilities().keySet();
-            if(tidJ.contains(tidY)) return true;
+            if(tidJ.containsAll(tidY)) return true;
         }
         return false;
     }
 
     public List<String> computeClosure(List<String> itemSetY, List<String> postSetYC, List<String> itemSetX, List<String> postSetX, Map<List<String>, ItemUtilityTable> itemUtilityTableMap) {
 
+        System.out.println("Computing closure...");
+
         ItemUtilityTableImpl itemUtilityTableImpl = new ItemUtilityTableImpl();
         List<String> itemSetYC = new ArrayList<>(itemSetY);
-
+        postSetYC = new ArrayList<String>();
 
         for(String itemZ : postSetX) {
 
-            System.out.println(itemSetX);
+            System.out.println("itemSetX = " + itemSetX);
 
             if(itemSetX.isEmpty()) {
                 postSetYC.add(itemZ);
+                postSetYC.add(itemZ);
             }
             else {
-                Set<Integer> tidX = itemUtilityTableMap.get(new ArrayList<>(itemSetX)).getItemTransactionUtilities().keySet();
-                Set<Integer> tidYC = itemUtilityTableMap.get(new ArrayList<>(itemSetYC)).getItemTransactionUtilities().keySet();
-//                if (tidX.contains(tidYC)) {
-                    System.out.println(itemUtilityTableMap.get(itemSetYC) + "   ----->" + itemUtilityTableMap.get(Arrays.asList(itemZ)));
+                Set<Integer> tidX = itemUtilityTableMap.get(Arrays.asList(itemSetX)).getItemTransactionUtilities().keySet();
+                Set<Integer> tidYC = itemUtilityTableMap.get(Arrays.asList(itemSetYC)).getItemTransactionUtilities().keySet();
+                System.out.println("tidX = " + tidX);
+                System.out.println("tidYC = " + tidYC);
+                if (tidX.containsAll(tidYC)) {
+                    //System.out.println(itemUtilityTableMap.get(itemSetYC) + "   ----->" + itemUtilityTableMap.get(Arrays.asList(itemZ)));
                     ItemUtilityTable itemUtilityTable = itemUtilityTableImpl.union(itemUtilityTableMap.get(itemSetYC), itemUtilityTableMap.get(Arrays.asList(itemZ)));
                     itemSetYC.add(itemZ);
                     System.out.println("itemSetYC = " + itemSetYC);
                     itemUtilityTableMap.put(itemSetYC, itemUtilityTable);
-//                } else {
-//                    postSetYC.add(itemZ);
-//                }
+                } else {
+                    postSetYC.add(itemZ);
+                }
             }
         }
 
@@ -65,6 +70,8 @@ public class GenChuiImpl {
         List<String> itemSetYC;
         List<String> prevSetYC;
         List<String> postSetYC;
+
+        System.out.println("X = " + itemSetX);
 
         ItemUtilityTableImpl itemUtilityTableImpl = new ItemUtilityTableImpl();
 
@@ -95,6 +102,7 @@ public class GenChuiImpl {
                         return;
                     }
                     execute(new GenChui(itemSetYC, prevSetYC, postSetYC, Constants.minUtil), itemUtilityTableMap, closedItemSets);
+                    prevSetX.add(item);
                 }
             }
         }

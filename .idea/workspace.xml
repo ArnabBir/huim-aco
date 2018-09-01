@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e26624d0-c7c9-46ba-843e-378e5455ceff" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/maths/huim/models/ItemPropensity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/isula" beforeDir="false" afterPath="$PROJECT_DIR$/isula" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/maths/huim/models/ItemTwuMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/maths/huim/models/ItemTwuMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/maths/huim/models/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/maths/huim/models/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/maths/huim/POC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/maths/huim/POC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/maths/huim/impl/GenChuiImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/maths/huim/impl/GenChuiImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/maths/huim/models/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/maths/huim/models/Constants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/maths/huim/utils/AntRoutingGraphUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/maths/huim/utils/AntRoutingGraphUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/maths/huim/POC.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/maths/huim/POC.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,11 +29,13 @@
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.116" value="1" />
           <entry key="project.open.time.41" value="1" />
+          <entry key="project.open.time.43" value="1" />
           <entry key="project.open.time.44" value="1" />
           <entry key="project.open.time.47" value="1" />
+          <entry key="project.open.time.50" value="1" />
           <entry key="project.open.time.54" value="1" />
           <entry key="project.open.time.56" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -36,7 +44,7 @@
           <entry key="classpath" value="1" />
           <entry key="gitignore" value="2" />
           <entry key="iml" value="1" />
-          <entry key="java" value="69" />
+          <entry key="java" value="78" />
           <entry key="md" value="2" />
           <entry key="project" value="1" />
           <entry key="txt" value="2" />
@@ -48,7 +56,7 @@
           <entry key="CLASS" value="3" />
           <entry key="Eclipse" value="2" />
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="69" />
+          <entry key="JAVA" value="78" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="XML" value="1" />
@@ -57,13 +65,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="49" />
-          <entry key="java" value="4466" />
+          <entry key="java" value="6129" />
           <entry key="xml" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4466" />
+          <entry key="JAVA" value="6129" />
           <entry key="PLAIN_TEXT" value="49" />
           <entry key="XML" value="6" />
         </counts>
@@ -72,13 +80,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/maths/huim/POC.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="77" column="44" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+            <state relative-caret-position="-140">
+              <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/ItemUtilityTableImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="23" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="54" column="9" lean-forward="true" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1552#1568#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/ItemPropensity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+              <folding>
+                <element signature="e#300#301#0" expanded="true" />
+                <element signature="e#327#328#0" expanded="true" />
+                <element signature="e#364#365#0" expanded="true" />
+                <element signature="e#397#398#0" expanded="true" />
+                <element signature="e#437#438#0" expanded="true" />
+                <element signature="e#469#470#0" expanded="true" />
+                <element signature="e#521#522#0" expanded="true" />
+                <element signature="e#565#566#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -87,32 +139,27 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-195">
-              <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
+            <state relative-caret-position="193">
+              <caret line="38" column="74" selection-start-line="38" selection-start-column="74" selection-end-line="38" selection-end-column="74" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2414#2422#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/AntRoutingGraph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="29" column="50" lean-forward="true" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
+            <state relative-caret-position="60">
+              <caret line="4" column="21" lean-forward="true" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#132#133#0" expanded="true" />
+                <element signature="e#180#181#0" expanded="true" />
+                <element signature="e#236#237#0" expanded="true" />
+                <element signature="e#268#269#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/ItemTwuMap.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -120,8 +167,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/AntRoutingGraphNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="18" column="72" lean-forward="true" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="72" />
+            <state relative-caret-position="60">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -145,6 +192,8 @@
       <find>(Set</find>
       <find>union</find>
       <find>genChuiImpl</find>
+      <find>TID</find>
+      <find>sum</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -197,11 +246,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/maths/huim/models/GenChui.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/maths/huim/models/ItemUtilityTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/maths/huim/impl/ItemUtilityTableImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/maths/huim/models/AntRoutingGraphNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/maths/huim/models/ItemTwuMap.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maths/huim/models/Constants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/maths/huim/POC.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maths/huim/models/ItemPropensity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java" />
       </list>
     </option>
   </component>
@@ -229,9 +280,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -364,6 +412,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -372,7 +423,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535575791342" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535829806352" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -560,63 +611,65 @@
       <workItem from="1534856008918" duration="19280000" />
       <workItem from="1534940105454" duration="6964000" />
       <workItem from="1535569966347" duration="3957000" />
+      <workItem from="1535735463692" duration="5777000" />
+      <workItem from="1535820770238" duration="9099000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="POC_sanityTest_(1) - 2018.08.30 at 01h 02m 46s.xml">
+    <history-entry file="POC_sanityTest_(1) - 2018.09.01 at 23h 40m 43s.xml">
       <configuration name="POC.sanityTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="POC_sanityTest_(1) - 2018.08.30 at 01h 04m 49s.xml">
+    <history-entry file="POC_sanityTest_(1) - 2018.09.01 at 23h 40m 50s.xml">
       <configuration name="POC.sanityTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="POC_sanityTest_(1) - 2018.08.30 at 01h 20m 19s.xml">
+    <history-entry file="POC_sanityTest_(1) - 2018.09.01 at 23h 40m 52s.xml">
       <configuration name="POC.sanityTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="POC_sanityTest_(1) - 2018.08.30 at 01h 22m 07s.xml">
+    <history-entry file="POC_sanityTest_(1) - 2018.09.01 at 23h 40m 54s.xml">
       <configuration name="POC.sanityTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="POC_sanityTest_(1) - 2018.08.30 at 01h 22m 31s.xml">
+    <history-entry file="POC_sanityTest_(1) - 2018.09.02 at 00h 03m 35s.xml">
       <configuration name="POC.sanityTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="POC_sanityTest_(1) - 2018.08.30 at 01h 24m 12s.xml">
+    <history-entry file="POC_sanityTest_(1) - 2018.09.02 at 00h 05m 28s.xml">
       <configuration name="POC.sanityTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="POC_sanityTest_(1) - 2018.08.30 at 02h 11m 01s.xml">
+    <history-entry file="POC_sanityTest_(1) - 2018.09.02 at 00h 07m 12s.xml">
       <configuration name="POC.sanityTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="POC_sanityTest_(1) - 2018.08.30 at 02h 13m 40s.xml">
+    <history-entry file="POC_sanityTest_(1) - 2018.09.02 at 00h 08m 57s.xml">
       <configuration name="POC.sanityTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="POC_sanityTest_(1) - 2018.08.30 at 02h 15m 06s.xml">
+    <history-entry file="POC_sanityTest_(1) - 2018.09.02 at 00h 10m 10s.xml">
       <configuration name="POC.sanityTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="POC_sanityTest_(1) - 2018.08.30 at 02h 15m 22s.xml">
+    <history-entry file="POC_sanityTest_(1) - 2018.09.02 at 00h 11m 24s.xml">
       <configuration name="POC.sanityTest (1)" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59032000" />
+    <option name="totallyTimeSpent" value="73908000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Capture Tool" order="0" />
       <window_info id="Designer" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="4" weight="0.14648977" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" visible="true" weight="0.14648977" />
       <window_info id="Structure" order="5" weight="0.249309" />
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="1" weight="0.3294979" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="3" weight="0.3294979" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.3253138" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.3294979" />
-      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.49267784" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.49267784" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.39958158" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
@@ -678,39 +731,140 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
-          <line>39</line>
+          <line>77</line>
           <properties />
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>81</line>
+          <properties />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>79</line>
+          <properties />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>80</line>
+          <properties />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>83</line>
+          <properties />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>82</line>
+          <properties />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>84</line>
+          <properties />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>87</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>86</line>
+          <properties />
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
           <line>88</line>
           <properties />
-          <option name="timeStamp" value="5" />
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/ItemUtilityTableImpl.java</url>
-          <line>33</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>89</line>
           <properties />
-          <option name="timeStamp" value="7" />
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/ItemUtilityTableImpl.java</url>
-          <line>35</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>91</line>
           <properties />
-          <option name="timeStamp" value="8" />
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/ItemUtilityTableImpl.java</url>
-          <line>36</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>95</line>
           <properties />
-          <option name="timeStamp" value="9" />
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>96</line>
+          <properties />
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>94</line>
+          <properties />
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>93</line>
+          <properties />
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>92</line>
+          <properties />
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>97</line>
+          <properties />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>99</line>
+          <properties />
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>98</line>
+          <properties />
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>103</line>
+          <properties />
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java</url>
+          <line>104</line>
+          <properties />
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/lang/Character.java" />
     <entry file="file://$PROJECT_DIR$/src/test/com/maths/huim/Dummy.java" />
     <entry file="file://$PROJECT_DIR$/src/huim/Dummy.java" />
     <entry file="file://$PROJECT_DIR$/src/test/com/maths/huim/models/TrieTest.java" />
@@ -819,19 +973,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/AntRoutingGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding>
-            <element signature="e#132#133#0" expanded="true" />
-            <element signature="e#180#181#0" expanded="true" />
-            <element signature="e#236#237#0" expanded="true" />
-            <element signature="e#268#269#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/api/ItemParamMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -902,13 +1043,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/dao/TransactionDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -927,16 +1061,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/ItemUtilityTableImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="50" column="27" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -959,8 +1083,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/ItemUtilityTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="8" column="48" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="48" />
+        <state relative-caret-position="-140">
+          <caret line="5" column="27" lean-forward="true" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/ItemTwuMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+          <folding>
+            <element signature="e#643#644#0" expanded="true" />
+            <element signature="e#679#680#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/ItemUtilityTableImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="23" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -969,44 +1121,69 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/impl/GenChuiImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-195">
-          <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
+        <state relative-caret-position="193">
+          <caret line="38" column="74" selection-start-line="38" selection-start-column="74" selection-end-line="38" selection-end-column="74" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/ItemTwuMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/AntRoutingGraphNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="18" column="72" lean-forward="true" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="29" column="50" lean-forward="true" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2414#2422#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/maths/huim/POC.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="77" column="44" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+        <state relative-caret-position="-140">
+          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/AntRoutingGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="21" lean-forward="true" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+          <folding>
+            <element signature="e#132#133#0" expanded="true" />
+            <element signature="e#180#181#0" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#268#269#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/AntRoutingGraphNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/ItemPropensity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+          <folding>
+            <element signature="e#300#301#0" expanded="true" />
+            <element signature="e#327#328#0" expanded="true" />
+            <element signature="e#364#365#0" expanded="true" />
+            <element signature="e#397#398#0" expanded="true" />
+            <element signature="e#437#438#0" expanded="true" />
+            <element signature="e#469#470#0" expanded="true" />
+            <element signature="e#521#522#0" expanded="true" />
+            <element signature="e#565#566#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="54" column="9" lean-forward="true" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1552#1568#0" expanded="true" />
           </folding>
         </state>
       </provider>

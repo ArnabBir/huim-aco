@@ -54,9 +54,33 @@ public class POC {
         System.out.println(" Union of 1 and 3 : ");
         System.out.println(itemUtilityTable);
         itemUtilityTableMap.put(itemUtilityTable.getItemSet(), itemUtilityTable);
-        itemUtilityTable = itemUtilityTableImpl.union(itemUtilityTableMap.get(Arrays.asList( "1", "3")), itemUtilityTableMap.get(Arrays.asList( "4")));
-        System.out.println(" Union of 1, 3 and 4 : ");
+
+        System.out.println(" sumItemUtility = " + itemUtilityTableImpl.sumItemUtility(itemUtilityTable));
+        System.out.println(" sumResidualUtility = " + itemUtilityTableImpl.sumResidualUtility(itemUtilityTable));
+
+        itemUtilityTable = itemUtilityTableImpl.union(itemUtilityTableMap.get(Arrays.asList( "1", "3")), itemUtilityTableMap.get(Arrays.asList( "5")));
+        System.out.println(" Union of 1, 3 and 5 : ");
         System.out.println(itemUtilityTable);
+        itemUtilityTableMap.put(itemUtilityTable.getItemSet(), itemUtilityTable);
+
+        System.out.println(" sumItemUtility = " + itemUtilityTableImpl.sumItemUtility(itemUtilityTable));
+        System.out.println(" sumResidualUtility = " + itemUtilityTableImpl.sumResidualUtility(itemUtilityTable));
+
+        itemUtilityTable = itemUtilityTableImpl.union(itemUtilityTableMap.get(Arrays.asList( "1", "3", "5")), itemUtilityTableMap.get(Arrays.asList( "4")));
+        System.out.println(" Union of 1, 3, 5 and 4 : ");
+        System.out.println(itemUtilityTable);
+        itemUtilityTableMap.put(itemUtilityTable.getItemSet(), itemUtilityTable);
+
+        System.out.println(" sumItemUtility = " + itemUtilityTableImpl.sumItemUtility(itemUtilityTable));
+        System.out.println(" sumResidualUtility = " + itemUtilityTableImpl.sumResidualUtility(itemUtilityTable));
+
+        itemUtilityTable = itemUtilityTableImpl.union(itemUtilityTableMap.get(Arrays.asList( "1", "3", "5", "4")), itemUtilityTableMap.get(Arrays.asList( "2")));
+        System.out.println(" Union of 1, 3, 5, 4 and 2 : ");
+        System.out.println(itemUtilityTable);
+        itemUtilityTableMap.put(itemUtilityTable.getItemSet(), itemUtilityTable);
+
+        System.out.println(" sumItemUtility = " + itemUtilityTableImpl.sumItemUtility(itemUtilityTable));
+        System.out.println(" sumResidualUtility = " + itemUtilityTableImpl.sumResidualUtility(itemUtilityTable));
 
         // Gen - CHUI
         GenChui genChui = new GenChui();
@@ -69,7 +93,7 @@ public class POC {
         GenChuiImpl genChuiImpl = new GenChuiImpl();
         List<List<String>> closedItemSets = new ArrayList<>();
         genChuiImpl.execute(genChui, itemUtilityTableMap, closedItemSets);
-        System.out.println(closedItemSets);
+        System.out.println(" closedItemSets = " + closedItemSets);
 
         //Get the initial graph
         System.out.println(itemTwuMap);

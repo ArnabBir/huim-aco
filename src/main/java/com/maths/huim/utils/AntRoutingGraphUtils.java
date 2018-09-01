@@ -1,14 +1,8 @@
 package com.maths.huim.utils;
 
-import com.maths.huim.models.AntRoutingGraph;
-import com.maths.huim.models.AntRoutingGraphNode;
-import com.maths.huim.models.Constants;
-import com.maths.huim.models.ItemTwuMap;
+import com.maths.huim.models.*;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AntRoutingGraphUtils {
 
@@ -23,7 +17,6 @@ public class AntRoutingGraphUtils {
 
     public void initGraph(AntRoutingGraphNode antRoutingGraphNode, ItemTwuMap itemTwuMap) {
 
-
         AntRoutingGraphNode childNode;
         for(Map.Entry<String, Long> pair: itemTwuMap.getMap().entrySet()) {
 
@@ -31,12 +24,54 @@ public class AntRoutingGraphUtils {
             childNode.setKeyItem(pair.getKey());
             childNode.setPheromone(Constants.tauBefore);
             childNode.setDesirability(pair.getValue());
-
             ItemTwuMap childTwuMap = itemTwuMap.getPairRemoved(pair.getKey());
-            System.out.println(childNode.getKeyItem());
             antRoutingGraphNode.addChild(childNode);
             initGraph(childNode, childTwuMap);
         }
+    }
+
+    public void localUpdatePheromone(AntRoutingGraphNode antRoutingGraphNode) {
+
+        double pheromone = antRoutingGraphNode.getPheromone();
+        pheromone = pheromone * (1 - Constants.rho) + Constants.rho * Constants.tau0;
+        antRoutingGraphNode.setPheromone(pheromone);
+    }
+
+    public String selectNextNode(AntRoutingGraphNode antRoutingGraphNode) {
+
+        String keyItem = "";
+        double q = Math.random();
+        double sumPropensity = 0;
+        List<ItemPropensity> itemPropensityList = new ArrayList<ItemPropensity>();
+        ItemPropensity maxItemPropensity = new ItemPropensity("", 0);
+
+        for(Map.Entry<String, AntRoutingGraphNode> pair : antRoutingGraphNode.getChildren().entrySet()) {
+            double propensity = Math.pow(pair.getValue().getPheromone(), Constants.alpha) * Math.pow(pair.getValue().getDesirability(), Constants.beta);
+            sumPropensity += propensity;
+            itemPropensityList.add(new ItemPropensity(pair.getKey(), propensity));
+            if(propensity > maxItemPropensity.getPropensity()) {
+                maxItemPropensity = new ItemPropensity(pair.getKey(), propensity);
+            }
+        }
+
+        if(q < Constants.q0) {
+            keyItem = maxItemPropensity.getItem();
+        }
+        else {
+            double randFraction = Math.random();
+            double randomPropensity = randFraction * sumPropensity;
+            double initPropensity = 0.0;
+
+            for(ItemPropensity itemPropensity : itemPropensityList) {
+                initPropensity += itemPropensity.getPropensity();
+                if(initPropensity >= randomPropensity) {
+                    keyItem = itemPropensity.getItem();
+                    break;
+                }
+            }
+        }
+
+        return keyItem;
     }
 
     public void insert(AntRoutingGraph antRoutingGraph, List<String> itemSet) {
