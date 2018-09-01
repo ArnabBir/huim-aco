@@ -101,6 +101,23 @@ public class POC {
         AntRoutingGraph antRoutingGraph = antRoutingGraphUtils.init(itemTwuMap);
         System.out.println(antRoutingGraph);
 
+//        for(int i = 0; i < 20000; ++i) {
+//            AntRoutingGraphNode antRoutingGraphNode = antRoutingGraph.getRoot();
+//            while (antRoutingGraphNode != null && !antRoutingGraphNode.getItemSet().equals("")) {
+//                String nextItem = antRoutingGraphUtils.selectNextNode(antRoutingGraphNode);
+//                System.out.print(nextItem + " -> ");
+//                antRoutingGraphNode = antRoutingGraphNode.getChildren().get(nextItem);
+//                if(antRoutingGraphNode != null) {
+//                    antRoutingGraphUtils.localUpdatePheromone(antRoutingGraphNode);
+//                }
+//            }
+//        }
+        Map<List<String>, Long> itemSetCountMap = new HashMap<List<String>, Long>();
+        for(int i = 0; i < 1000; ++i) {
+            antRoutingGraphUtils.antTraverse(antRoutingGraph.getRoot(), itemSetCountMap);
+        }
+
+        System.out.println(itemSetCountMap);
 
     }
 

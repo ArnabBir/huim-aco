@@ -37,6 +37,25 @@ public class AntRoutingGraphUtils {
         antRoutingGraphNode.setPheromone(pheromone);
     }
 
+    public void antTraverse(AntRoutingGraphNode antRoutingGraphNode, Map<List<String>, Long> itemSetCountMap) {
+
+        List<String> itemSet = new ArrayList<String>();
+        long itemSetCount = 0;
+        while (antRoutingGraphNode != null && !antRoutingGraphNode.getItemSet().equals("")) {
+            String nextItem = selectNextNode(antRoutingGraphNode);
+            //System.out.print(nextItem + " -> ");
+            antRoutingGraphNode = antRoutingGraphNode.getChildren().get(nextItem);
+            if(antRoutingGraphNode != null) {
+                itemSet.add(nextItem);
+                localUpdatePheromone(antRoutingGraphNode);
+            }
+        }
+        if(itemSetCountMap.containsKey(itemSet)) {
+            itemSetCount = itemSetCountMap.get(itemSet).longValue();
+        }
+        itemSetCountMap.put(itemSet, itemSetCount + 1);
+    }
+
     public String selectNextNode(AntRoutingGraphNode antRoutingGraphNode) {
 
         String keyItem = "";
