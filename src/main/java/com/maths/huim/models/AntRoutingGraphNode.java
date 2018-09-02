@@ -10,14 +10,14 @@ public class AntRoutingGraphNode {
     private double weight;
     private double pheromone;
     private double desirability;
-    private boolean isLeaf;
+    private boolean visited;
 
     public AntRoutingGraphNode() {
 
         this.keyItem = "";
         this.itemSet = new ArrayList<String>();
         this.children = new LinkedHashMap<String, AntRoutingGraphNode>();
-        this.isLeaf = false;
+        this.visited = false;
         this.weight = 0;
         this.pheromone = Constants.tauBefore;
         this.desirability = 0.0;
@@ -64,12 +64,12 @@ public class AntRoutingGraphNode {
         this.children = children;
     }
 
-    public boolean isLeaf() {
-        return this.isLeaf;
+    public boolean isVisited() {
+        return this.visited;
     }
 
-    public void setLeaf(boolean leaf) {
-        this.isLeaf = leaf;
+    public void setVisited(boolean visited) {
+        this.visited = visited;
     }
 
     public double getPheromone() {

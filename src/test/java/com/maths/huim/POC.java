@@ -49,8 +49,8 @@ public class POC {
         boolean var = itemUtilityTableMap.containsKey(Arrays.asList("1"));
         System.out.println(var);
 
-        // Calcualte union of 2 tables
-        ItemUtilityTable itemUtilityTable = itemUtilityTableImpl.union(itemUtilityTableMap.get(Arrays.asList( "1")), itemUtilityTableMap.get(Arrays.asList( "3")));
+        // Calcualte computeClosure of 2 tables
+        ItemUtilityTable itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(Arrays.asList( "1")), itemUtilityTableMap.get(Arrays.asList( "3")));
         System.out.println(" Union of 1 and 3 : ");
         System.out.println(itemUtilityTable);
         itemUtilityTableMap.put(itemUtilityTable.getItemSet(), itemUtilityTable);
@@ -58,7 +58,7 @@ public class POC {
         System.out.println(" sumItemUtility = " + itemUtilityTableImpl.sumItemUtility(itemUtilityTable));
         System.out.println(" sumResidualUtility = " + itemUtilityTableImpl.sumResidualUtility(itemUtilityTable));
 
-        itemUtilityTable = itemUtilityTableImpl.union(itemUtilityTableMap.get(Arrays.asList( "1", "3")), itemUtilityTableMap.get(Arrays.asList( "5")));
+        itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(Arrays.asList( "1", "3")), itemUtilityTableMap.get(Arrays.asList( "5")));
         System.out.println(" Union of 1, 3 and 5 : ");
         System.out.println(itemUtilityTable);
         itemUtilityTableMap.put(itemUtilityTable.getItemSet(), itemUtilityTable);
@@ -66,7 +66,7 @@ public class POC {
         System.out.println(" sumItemUtility = " + itemUtilityTableImpl.sumItemUtility(itemUtilityTable));
         System.out.println(" sumResidualUtility = " + itemUtilityTableImpl.sumResidualUtility(itemUtilityTable));
 
-        itemUtilityTable = itemUtilityTableImpl.union(itemUtilityTableMap.get(Arrays.asList( "1", "3", "5")), itemUtilityTableMap.get(Arrays.asList( "4")));
+        itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(Arrays.asList( "1", "3", "5")), itemUtilityTableMap.get(Arrays.asList( "4")));
         System.out.println(" Union of 1, 3, 5 and 4 : ");
         System.out.println(itemUtilityTable);
         itemUtilityTableMap.put(itemUtilityTable.getItemSet(), itemUtilityTable);
@@ -74,7 +74,7 @@ public class POC {
         System.out.println(" sumItemUtility = " + itemUtilityTableImpl.sumItemUtility(itemUtilityTable));
         System.out.println(" sumResidualUtility = " + itemUtilityTableImpl.sumResidualUtility(itemUtilityTable));
 
-        itemUtilityTable = itemUtilityTableImpl.union(itemUtilityTableMap.get(Arrays.asList( "1", "3", "5", "4")), itemUtilityTableMap.get(Arrays.asList( "2")));
+        itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(Arrays.asList( "1", "3", "5", "4")), itemUtilityTableMap.get(Arrays.asList( "2")));
         System.out.println(" Union of 1, 3, 5, 4 and 2 : ");
         System.out.println(itemUtilityTable);
         itemUtilityTableMap.put(itemUtilityTable.getItemSet(), itemUtilityTable);
@@ -101,22 +101,15 @@ public class POC {
         AntRoutingGraph antRoutingGraph = antRoutingGraphUtils.init(itemTwuMap);
         System.out.println(antRoutingGraph);
 
-//        for(int i = 0; i < 20000; ++i) {
-//            AntRoutingGraphNode antRoutingGraphNode = antRoutingGraph.getRoot();
-//            while (antRoutingGraphNode != null && !antRoutingGraphNode.getItemSet().equals("")) {
-//                String nextItem = antRoutingGraphUtils.selectNextNode(antRoutingGraphNode);
-//                System.out.print(nextItem + " -> ");
-//                antRoutingGraphNode = antRoutingGraphNode.getChildren().get(nextItem);
-//                if(antRoutingGraphNode != null) {
-//                    antRoutingGraphUtils.localUpdatePheromone(antRoutingGraphNode);
-//                }
-//            }
-//        }
+        // Traverse through the graph
         Map<List<String>, Long> itemSetCountMap = new HashMap<List<String>, Long>();
-        for(int i = 0; i < 1000; ++i) {
-            antRoutingGraphUtils.antTraverse(antRoutingGraph.getRoot(), itemSetCountMap);
+        long countNodes = 0;
+        for(int i = 0; i < 10000 && countNodes < 31; ++i) {
+            System.out.println(i);
+            countNodes += antRoutingGraphUtils.antTraverse(antRoutingGraph.getRoot(), itemUtilityTableMap, itemSetCountMap, 0);
         }
 
+        System.out.println(countNodes);
         System.out.println(itemSetCountMap);
 
     }

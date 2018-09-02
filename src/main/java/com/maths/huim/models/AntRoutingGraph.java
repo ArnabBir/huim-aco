@@ -1,11 +1,13 @@
 package com.maths.huim.models;
 
+import java.util.Map;
+
 public class AntRoutingGraph {
 
     private AntRoutingGraphNode root;
 
     public AntRoutingGraph() {
-        root = new AntRoutingGraphNode();
+        this.root = new AntRoutingGraphNode();
     }
 
     public AntRoutingGraph(AntRoutingGraphNode root) {

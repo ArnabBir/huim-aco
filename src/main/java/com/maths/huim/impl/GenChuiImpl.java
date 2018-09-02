@@ -4,7 +4,6 @@ import com.maths.huim.models.Constants;
 import com.maths.huim.models.GenChui;
 import com.maths.huim.models.ItemUtilityTable;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class GenChuiImpl {
@@ -42,7 +41,7 @@ public class GenChuiImpl {
                 System.out.println("tidYC = " + tidYC);
                 if (tidX.containsAll(tidYC)) {
                     //System.out.println(itemUtilityTableMap.get(itemSetYC) + "   ----->" + itemUtilityTableMap.get(Arrays.asList(itemZ)));
-                    ItemUtilityTable itemUtilityTable = itemUtilityTableImpl.union(itemUtilityTableMap.get(itemSetYC), itemUtilityTableMap.get(Arrays.asList(itemZ)));
+                    ItemUtilityTable itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(itemSetYC), itemUtilityTableMap.get(Arrays.asList(itemZ)));
                     itemSetYC.add(itemZ);
                     System.out.println("itemSetYC = " + itemSetYC);
                     itemUtilityTableMap.put(itemSetYC, itemUtilityTable);
@@ -81,7 +80,7 @@ public class GenChuiImpl {
             itemSetY = new ArrayList<>(itemSetX);
             itemSetY.add(item);
             if(itemSetX.size() > 0) {
-                ItemUtilityTable itemUtilityTableY = itemUtilityTableImpl.union(itemUtilityTableMap.get(itemSetX), itemUtilityTableMap.get(Arrays.asList(item)));
+                ItemUtilityTable itemUtilityTableY = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(itemSetX), itemUtilityTableMap.get(Arrays.asList(item)));
                 itemUtilityTableMap.put(itemSetY, itemUtilityTableY);
             }
             prevSetY = new ArrayList<>(prevSetX);

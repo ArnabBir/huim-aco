@@ -1,5 +1,6 @@
 package com.maths.huim.utils;
 
+import com.maths.huim.impl.ItemUtilityTableImpl;
 import com.maths.huim.models.*;
 
 import java.util.*;
@@ -37,23 +38,74 @@ public class AntRoutingGraphUtils {
         antRoutingGraphNode.setPheromone(pheromone);
     }
 
-    public void antTraverse(AntRoutingGraphNode antRoutingGraphNode, Map<List<String>, Long> itemSetCountMap) {
+    public long getRemainingUnvisitedPathLength(AntRoutingGraphNode antRoutingGraphNode) {
+
+        long countNodes = 0;
+        for(Map.Entry<String, AntRoutingGraphNode> pair : antRoutingGraphNode.getChildren().entrySet()) {
+
+            if(pair.getValue() == null) return countNodes;
+            if(pair.getValue().isVisited()) {
+                continue;
+            }
+            pair.getValue().setVisited(true);
+            //++countNodes;
+            countNodes += 1 + getRemainingUnvisitedPathLength(pair.getValue());
+        }
+
+        return countNodes;
+    }
+
+    public long antTraverse(AntRoutingGraphNode antRoutingGraphNode, Map<List<String>, ItemUtilityTable> itemUtilityTableMap, Map<List<String>, Long> itemSetCountMap, long countNodes) {
 
         List<String> itemSet = new ArrayList<String>();
         long itemSetCount = 0;
+        ItemUtilityTableImpl itemUtilityTableImpl = new ItemUtilityTableImpl();
         while (antRoutingGraphNode != null && !antRoutingGraphNode.getItemSet().equals("")) {
+
             String nextItem = selectNextNode(antRoutingGraphNode);
-            //System.out.print(nextItem + " -> ");
             antRoutingGraphNode = antRoutingGraphNode.getChildren().get(nextItem);
             if(antRoutingGraphNode != null) {
-                itemSet.add(nextItem);
-                localUpdatePheromone(antRoutingGraphNode);
+
+                if(!antRoutingGraphNode.isVisited()) {
+                    antRoutingGraphNode.setVisited(true);
+                    ++countNodes;
+                }
+
+                if(itemSet.size() == 0) {
+
+                    itemSet.add(nextItem);
+                }
+                else {
+
+                    ItemUtilityTable itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(itemSet), itemUtilityTableMap.get(Arrays.asList(nextItem)));
+                    itemSet.add(nextItem);
+                    itemUtilityTableMap.put(itemSet, itemUtilityTable);
+                    localUpdatePheromone(antRoutingGraphNode);
+                    long sumItemUtility = itemUtilityTableImpl.sumItemUtility(itemUtilityTable);
+                    long sumResidualUtility = itemUtilityTableImpl.sumResidualUtility(itemUtilityTable);
+                    itemSetCount = 0;
+                    if(sumItemUtility > Constants.minUtil) {
+                        System.out.println(new ArrayList<>(itemSet));
+                        if(itemSetCountMap.containsKey(new ArrayList<>(itemSet))) {
+                            itemSetCount = itemSetCountMap.get(new ArrayList<String>(itemSet)).longValue();
+                        }
+                        itemSetCountMap.put(new ArrayList<>(itemSet), itemSetCount + 1);
+                    }
+                    else if(sumItemUtility + sumResidualUtility < Constants.minUtil) {
+                        countNodes += getRemainingUnvisitedPathLength(antRoutingGraphNode);
+                        return countNodes;
+                    }
+
+                }
             }
         }
-        if(itemSetCountMap.containsKey(itemSet)) {
-            itemSetCount = itemSetCountMap.get(itemSet).longValue();
-        }
-        itemSetCountMap.put(itemSet, itemSetCount + 1);
+
+//        if(itemSetCountMap.containsKey(itemSet)) {
+//            itemSetCount = itemSetCountMap.get(itemSet).longValue();
+//        }
+//        itemSetCountMap.put(itemSet, itemSetCount + 1);
+        return countNodes;
+
     }
 
     public String selectNextNode(AntRoutingGraphNode antRoutingGraphNode) {
@@ -113,7 +165,7 @@ public class AntRoutingGraphUtils {
 
             //set leaf node
             if(i==itemSet.size()-1) {
-                t.setLeaf(true);
+                t.setVisited(true);
                 t.setItemSet(itemSet);
             }
         }
@@ -149,7 +201,7 @@ public class AntRoutingGraphUtils {
     public boolean search(AntRoutingGraph antRoutingGraph, List<String> itemSets) {
 
         AntRoutingGraphNode t = searchNode(antRoutingGraph, itemSets);
-        if(t != null && t.isLeaf()) return true;
+        if(t != null && t.isVisited()) return true;
         else    return false;
     }
 
@@ -160,10 +212,10 @@ public class AntRoutingGraphUtils {
     private boolean delete(AntRoutingGraphNode current, List<String> word, int index) {
 
         if (index == word.size()) {
-            if (!current.isLeaf()) {
+            if (!current.isVisited()) {
                 return false;
             }
-            current.setLeaf(false);
+            current.setVisited(false);
             return current.getChildren().isEmpty();
         }
 
@@ -171,7 +223,7 @@ public class AntRoutingGraphUtils {
         AntRoutingGraphNode node = current.getChildren().get(item);
         if (node == null)   return false;
 
-        boolean shouldDeleteCurrentNode = delete( node, word, index + 1) && !node.isLeaf();
+        boolean shouldDeleteCurrentNode = delete( node, word, index + 1) && !node.isVisited();
 
         if (shouldDeleteCurrentNode) {
             current.getChildren().remove(item);
