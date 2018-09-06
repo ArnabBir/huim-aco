@@ -39,8 +39,16 @@ public class AntRoutingGraphUtils {
         antRoutingGraphNode.setPheromone(pheromone);
     }
 
-    public void globalUpdatePheromone(AntRoutingGraphNode antRoutingGraphNode) {
+    public void globalUpdatePheromone(AntRoutingGraph antRoutingGraph, PathUtil maxPathUtil) {
 
+        AntRoutingGraphNode antRoutingGraphNode = antRoutingGraph.getRoot();
+        double delta = (double) maxPathUtil.getUtil() / Constants.minUtil;
+        for(String item : maxPathUtil.getPath()) {
+            antRoutingGraphNode = antRoutingGraphNode.getChildren().get(item);
+            double pheromone = antRoutingGraphNode.getPheromone();
+            pheromone += delta;
+            antRoutingGraphNode.setPheromone(pheromone);
+        }
     }
 
     public long getRemainingUnvisitedPathLength(AntRoutingGraphNode antRoutingGraphNode) {
@@ -69,15 +77,25 @@ public class AntRoutingGraphUtils {
         }
     }
 
-    public long antTraverse(AntRoutingGraphNode antRoutingGraphNode, Map<List<String>, ItemUtilityTable> itemUtilityTableMap, Map<List<String>, Long> itemSetCountMap, long countNodes) {
+    public void incrementItemSetCountMap(Map<List<String>, Long> itemSetCountMap, List<String> itemSet) {
+
+        long itemSetCount = 0;
+        if(itemSetCountMap.containsKey(new ArrayList<>(itemSet))) {
+            itemSetCount = itemSetCountMap.get(new ArrayList<String>(itemSet)).longValue();
+        }
+        itemSetCountMap.put(new ArrayList<>(itemSet), itemSetCount + 1);
+    }
+
+    public long antTraverse(AntRoutingGraphNode antRoutingGraphNode, Map<List<String>, ItemUtilityTable> itemUtilityTableMap,
+                            Map<List<String>, Long> itemSetCountMap, PathUtil maxPathUtil, long countNodes) {
 
         List<String> itemSet = new ArrayList<String>();
-        long itemSetCount = 0;
         ItemUtilityTableImpl itemUtilityTableImpl = new ItemUtilityTableImpl();
         while (antRoutingGraphNode != null && !antRoutingGraphNode.getItemSet().equals("")) {
 
             String nextItem = selectNextNode(antRoutingGraphNode);
             antRoutingGraphNode = antRoutingGraphNode.getChildren().get(nextItem);
+
             if(antRoutingGraphNode != null) {
 
                 if(!antRoutingGraphNode.isVisited()) {
@@ -99,19 +117,19 @@ public class AntRoutingGraphUtils {
 
                     long sumItemUtility = itemUtilityTableImpl.sumItemUtility(itemUtilityTable);
                     long sumResidualUtility = itemUtilityTableImpl.sumResidualUtility(itemUtilityTable);
-                    itemSetCount = 0;
 
                     if(sumItemUtility > Constants.minUtil) {
-                        if(itemSetCountMap.containsKey(new ArrayList<>(itemSet))) {
-                            itemSetCount = itemSetCountMap.get(new ArrayList<String>(itemSet)).longValue();
+
+                        if(sumItemUtility > maxPathUtil.getUtil()) {
+                            maxPathUtil.setUtil(sumItemUtility);
+                            maxPathUtil.setPath(itemSet);
                         }
-                        itemSetCountMap.put(new ArrayList<>(itemSet), itemSetCount + 1);
+                        incrementItemSetCountMap(itemSetCountMap, itemSet);
                     }
                     else if(sumItemUtility + sumResidualUtility < Constants.minUtil) {
                         countNodes += getRemainingUnvisitedPathLength(antRoutingGraphNode);
                         return countNodes;
                     }
-
                 }
             }
         }

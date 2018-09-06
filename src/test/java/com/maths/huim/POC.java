@@ -51,7 +51,7 @@ public class POC {
 
         // Calcualte computeClosure of 2 tables
         ItemUtilityTable itemUtilityTable;
-        itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(Arrays.asList( "1")), itemUtilityTableMap.get(Arrays.asList( "3")));
+        itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(Arrays.asList("1")), itemUtilityTableMap.get(Arrays.asList("3")));
         System.out.println(" Union of 1 and 3 : ");
         System.out.println(itemUtilityTable);
         itemUtilityTableMap.put(itemUtilityTable.getItemSet(), itemUtilityTable);
@@ -59,7 +59,7 @@ public class POC {
         System.out.println(" sumItemUtility = " + itemUtilityTableImpl.sumItemUtility(itemUtilityTable));
         System.out.println(" sumResidualUtility = " + itemUtilityTableImpl.sumResidualUtility(itemUtilityTable));
 
-        itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(Arrays.asList( "1", "3")), itemUtilityTableMap.get(Arrays.asList( "5")));
+        itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(Arrays.asList("1", "3")), itemUtilityTableMap.get(Arrays.asList("5")));
         System.out.println(" Union of 1, 3 and 5 : ");
         System.out.println(itemUtilityTable);
         itemUtilityTableMap.put(itemUtilityTable.getItemSet(), itemUtilityTable);
@@ -67,7 +67,7 @@ public class POC {
         System.out.println(" sumItemUtility = " + itemUtilityTableImpl.sumItemUtility(itemUtilityTable));
         System.out.println(" sumResidualUtility = " + itemUtilityTableImpl.sumResidualUtility(itemUtilityTable));
 
-        itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(Arrays.asList( "1", "3", "5")), itemUtilityTableMap.get(Arrays.asList( "4")));
+        itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(Arrays.asList("1", "3", "5")), itemUtilityTableMap.get(Arrays.asList("4")));
         System.out.println(" Union of 1, 3, 5 and 4 : ");
         System.out.println(itemUtilityTable);
         itemUtilityTableMap.put(itemUtilityTable.getItemSet(), itemUtilityTable);
@@ -75,7 +75,7 @@ public class POC {
         System.out.println(" sumItemUtility = " + itemUtilityTableImpl.sumItemUtility(itemUtilityTable));
         System.out.println(" sumResidualUtility = " + itemUtilityTableImpl.sumResidualUtility(itemUtilityTable));
 
-        itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(Arrays.asList( "1", "3", "5", "4")), itemUtilityTableMap.get(Arrays.asList( "2")));
+        itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(Arrays.asList("1", "3", "5", "4")), itemUtilityTableMap.get(Arrays.asList("2")));
         System.out.println(" Union of 1, 3, 5, 4 and 2 : ");
         System.out.println(itemUtilityTable);
         itemUtilityTableMap.put(itemUtilityTable.getItemSet(), itemUtilityTable);
@@ -105,9 +105,18 @@ public class POC {
         // Traverse through the graph
         Map<List<String>, Long> itemSetCountMap = new HashMap<List<String>, Long>();
         long countNodes = 0;
-        for(int i = 0; i < 10000 && countNodes < Math.pow(2,5) - 1; ++i) {
-            //System.out.println(i);
-            countNodes += antRoutingGraphUtils.antTraverse(antRoutingGraph.getRoot(), itemUtilityTableMap, itemSetCountMap, 0);
+
+        PathUtil maxPathUtil = new PathUtil();
+
+        for(int g = 0; g < Constants.maxG && countNodes < Math.pow(2, 5); ++g) {
+            maxPathUtil = new PathUtil();
+            for (int i = 0; i < 20 && countNodes < Math.pow(2, 5) - 1; ++i) {
+                countNodes += antRoutingGraphUtils.antTraverse(antRoutingGraph.getRoot(), itemUtilityTableMap, itemSetCountMap, maxPathUtil, 0);
+            }
+            //System.out.println(maxPathUtil);
+            if(maxPathUtil.getUtil() > 0) {
+                antRoutingGraphUtils.globalUpdatePheromone(antRoutingGraph, maxPathUtil);
+            }
         }
 
         System.out.println(countNodes);

@@ -64,7 +64,6 @@ public class ItemUtilityTableImpl {
 
     public Set<Integer> getTidSet(ItemUtilityTable itemUtilityTable) {
 
-        System.out.println(itemUtilityTable);
         return itemUtilityTable.getItemTransactionUtilities().keySet();
     }
 
