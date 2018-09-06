@@ -2,6 +2,7 @@ package com.maths.huim.utils;
 
 import com.maths.huim.impl.ItemUtilityTableImpl;
 import com.maths.huim.models.*;
+import isula.aco.Ant;
 
 import java.util.*;
 
@@ -38,6 +39,10 @@ public class AntRoutingGraphUtils {
         antRoutingGraphNode.setPheromone(pheromone);
     }
 
+    public void globalUpdatePheromone(AntRoutingGraphNode antRoutingGraphNode) {
+
+    }
+
     public long getRemainingUnvisitedPathLength(AntRoutingGraphNode antRoutingGraphNode) {
 
         long countNodes = 0;
@@ -53,6 +58,15 @@ public class AntRoutingGraphUtils {
         }
 
         return countNodes;
+    }
+
+    // Check the closure property and remove the unnecessary instances
+    public void removeItemSetCout(Map<List<String>, ItemUtilityTable> itemUtilityTableMap, List<String> itemSet, String nextItem, Map<List<String>, Long> itemSetCountMap, ItemUtilityTableImpl itemUtilityTableImpl) {
+
+        if(itemUtilityTableImpl.isClosureCheck(itemUtilityTableMap.get(itemSet), itemUtilityTableMap.get(Arrays.asList(nextItem)))) {
+
+            itemSetCountMap.remove(new ArrayList<>(itemSet));
+        }
     }
 
     public long antTraverse(AntRoutingGraphNode antRoutingGraphNode, Map<List<String>, ItemUtilityTable> itemUtilityTableMap, Map<List<String>, Long> itemSetCountMap, long countNodes) {
@@ -78,14 +92,16 @@ public class AntRoutingGraphUtils {
                 else {
 
                     ItemUtilityTable itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(itemSet), itemUtilityTableMap.get(Arrays.asList(nextItem)));
+                    removeItemSetCout(itemUtilityTableMap, itemSet, nextItem, itemSetCountMap, itemUtilityTableImpl);
                     itemSet.add(nextItem);
                     itemUtilityTableMap.put(itemSet, itemUtilityTable);
                     localUpdatePheromone(antRoutingGraphNode);
+
                     long sumItemUtility = itemUtilityTableImpl.sumItemUtility(itemUtilityTable);
                     long sumResidualUtility = itemUtilityTableImpl.sumResidualUtility(itemUtilityTable);
                     itemSetCount = 0;
+
                     if(sumItemUtility > Constants.minUtil) {
-                        System.out.println(new ArrayList<>(itemSet));
                         if(itemSetCountMap.containsKey(new ArrayList<>(itemSet))) {
                             itemSetCount = itemSetCountMap.get(new ArrayList<String>(itemSet)).longValue();
                         }
@@ -100,12 +116,7 @@ public class AntRoutingGraphUtils {
             }
         }
 
-//        if(itemSetCountMap.containsKey(itemSet)) {
-//            itemSetCount = itemSetCountMap.get(itemSet).longValue();
-//        }
-//        itemSetCountMap.put(itemSet, itemSetCount + 1);
         return countNodes;
-
     }
 
     public String selectNextNode(AntRoutingGraphNode antRoutingGraphNode) {

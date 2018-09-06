@@ -61,4 +61,19 @@ public class ItemUtilityTableImpl {
         }
         return new ItemUtilityTable(unionItemSet, itemTransactionUtilityMap);
     }
+
+    public Set<Integer> getTidSet(ItemUtilityTable itemUtilityTable) {
+
+        System.out.println(itemUtilityTable);
+        return itemUtilityTable.getItemTransactionUtilities().keySet();
+    }
+
+    public boolean isClosureCheck(ItemUtilityTable itemUtilityTable1, ItemUtilityTable itemUtilityTable2) {
+
+        Set<Integer> tidSet1 = getTidSet(itemUtilityTable1);
+        Set<Integer> tidSet2 = getTidSet(itemUtilityTable2);
+        if(tidSet2 == null) return false;
+        if(tidSet1 == null) return true;
+        return tidSet2.containsAll(tidSet1);
+    }
 }
