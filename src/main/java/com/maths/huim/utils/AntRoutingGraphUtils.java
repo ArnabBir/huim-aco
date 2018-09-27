@@ -32,6 +32,27 @@ public class AntRoutingGraphUtils {
         }
     }
 
+    public AntRoutingGraph bootstrapAntGraph(ItemTwuMap itemTwuMap) {
+
+        AntRoutingGraphNode antRoutingGraphNode = new AntRoutingGraphNode();
+        List<AntRoutingGraphNode> nodeList = new ArrayList<AntRoutingGraphNode>();
+        List<String> keyList = new ArrayList<String>(itemTwuMap.getMap().keySet());
+
+        for(int i = keyList.size()-1; i >= 0; --i) {
+
+            AntRoutingGraphNode childNode = new AntRoutingGraphNode();
+            childNode.setKeyItem(keyList.get(i));
+            childNode.setPheromone(Constants.tauBefore);
+            childNode.setDesirability(itemTwuMap.getMap().get(keyList.get(i)));
+            for(Map.Entry<String, AntRoutingGraphNode> node : antRoutingGraphNode.getChildren().entrySet()) {
+                AntRoutingGraphNode tempNode = node.getValue();
+                childNode.addChild(tempNode);
+            }
+            antRoutingGraphNode.addChild(childNode);
+        }
+        return new AntRoutingGraph(antRoutingGraphNode);
+    }
+
     public void localUpdatePheromone(AntRoutingGraphNode antRoutingGraphNode) {
 
         double pheromone = antRoutingGraphNode.getPheromone();

@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class ItemUtilityTableImpl {
 
-    public Map< List<String>, ItemUtilityTable> init(List<Transaction> transactions, ItemUnitProfitMap itemUnitProfitMap, ItemTwuMap itemTwuMap) {
+    public Map< List<String>, ItemUtilityTable> init(List<Transaction> transactions, ItemTwuMap itemTwuMap) {
 
         List<Transaction> trns = transactions;
         Map<List<String>, ItemUtilityTable> itemUtilityTableMap = new LinkedHashMap<List<String>, ItemUtilityTable>();
@@ -17,7 +17,7 @@ public class ItemUtilityTableImpl {
             for(Transaction transaction : trns) {
                 long totalUtil = transaction.getTotalUtil();
                 if(transaction.getItemCountMap().containsKey(itemTwu.getKey())) {
-                    long eu = transaction.getItemCountMap().get(itemTwu.getKey()) * itemUnitProfitMap.getMap().get(itemTwu.getKey());
+                    long eu = transaction.getItemCountMap().get(itemTwu.getKey()) /* * itemUnitProfitMap.getMap().get(itemTwu.getKey())*/;
                     itemTransactionUtilityMap.put(transaction.getTid(),
                             new ItemTransactionUtility(transaction.getTid(), eu, totalUtil - eu));
                     transaction.setTotalUtil(totalUtil - eu);

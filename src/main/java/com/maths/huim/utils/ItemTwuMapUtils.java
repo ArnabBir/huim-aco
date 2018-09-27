@@ -23,12 +23,11 @@ public class ItemTwuMapUtils {
         Map<String, Long> sortedMap = new LinkedHashMap<String, Long>();
         for(Map.Entry<String, Long> entry:list){
             sortedMap.put(entry.getKey(), entry.getValue());
-            System.out.println(entry.getKey()+" ==== "+entry.getValue());
         }
         itemTwuMap.setMap(sortedMap);
     }
 
-    public void prune(List<Transaction> transactions, ItemTwuMap itemTwuMap, ItemUnitProfitMap itemUnitProfitMap) {
+    public void prune(List<Transaction> transactions, ItemTwuMap itemTwuMap, Set<String> itemSet) {
 
         Map<String, Long> prunedMap = new LinkedHashMap<String, Long>();
         for(Map.Entry<String, Long> pair : itemTwuMap.getMap().entrySet()) {
@@ -36,7 +35,7 @@ public class ItemTwuMapUtils {
                 for (final ListIterator<Transaction> itrTrn = transactions.listIterator(); itrTrn.hasNext();) {
                     Transaction transaction = itrTrn.next();
                     if(transaction.getItemCountMap().containsKey(pair.getKey())) {
-                        transaction.setTotalUtil(transaction.getTotalUtil() - transaction.getItemCountMap().get(pair.getKey()) * itemUnitProfitMap.getMap().get(pair.getKey()));
+                        transaction.setTotalUtil(transaction.getTotalUtil() - transaction.getItemCountMap().get(pair.getKey()));
                         itrTrn.set(transaction);
                     }
                 }

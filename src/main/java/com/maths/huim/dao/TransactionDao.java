@@ -10,7 +10,7 @@ import java.util.*;
 
 public class TransactionDao {
 
-    public List<Transaction> fetch(String scenario) {
+    public List<Transaction> fetch(String scenario, Set<String> itemSet) {
 
         List<Transaction> transactions = new ArrayList<Transaction>();
 
@@ -27,6 +27,8 @@ public class TransactionDao {
                 List<String> components = Arrays.asList(line.split(":"));
                 List<String> itemset = Arrays.asList(components.get(0).split(" "));
                 List<String> counts = Arrays.asList(components.get(2).split(" "));
+
+                itemSet.addAll(itemset);
 
                 for(int j = 0; j < itemset.size(); ++j) {
                     itemCountMap.put(itemset.get(j), Long.parseLong(counts.get(j)));
