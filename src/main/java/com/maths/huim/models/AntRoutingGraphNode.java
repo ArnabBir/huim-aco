@@ -6,7 +6,7 @@ public class AntRoutingGraphNode {
 
     private String keyItem;
     private List<String> itemSet;
-    private Map<String, AntRoutingGraphNode> children;
+    private List<AntRoutingGraphNode> children;
     private double weight;
     private double pheromone;
     private double desirability;
@@ -16,7 +16,7 @@ public class AntRoutingGraphNode {
 
         this.keyItem = "";
         this.itemSet = new ArrayList<String>();
-        this.children = new LinkedHashMap<String, AntRoutingGraphNode>();
+        this.children = new ArrayList<AntRoutingGraphNode>();
         this.visited = false;
         this.pheromone = Constants.tauBefore;
         this.desirability = 0.0;
@@ -28,7 +28,7 @@ public class AntRoutingGraphNode {
     }
 
     public void addChild(AntRoutingGraphNode antRoutingGraphNode) {
-        this.children.put(antRoutingGraphNode.getKeyItem(), antRoutingGraphNode);
+        this.children.add(antRoutingGraphNode);
     }
 
 
@@ -48,11 +48,11 @@ public class AntRoutingGraphNode {
         this.itemSet = itemSet;
     }
 
-    public Map<String, AntRoutingGraphNode> getChildren() {
+    public List<AntRoutingGraphNode> getChildren() {
         return this.children;
     }
 
-    public void setChildren(Map<String, AntRoutingGraphNode> children) {
+    public void setChildren(List<AntRoutingGraphNode> children) {
         this.children = children;
     }
 
@@ -84,8 +84,8 @@ public class AntRoutingGraphNode {
     public String toString() {
 
         String trieString = "";
-        for(Map.Entry<String, AntRoutingGraphNode> node : this.children.entrySet()) {
-            trieString += node.getKey() + " -> {" + node.getValue() + " } ";
+        for(AntRoutingGraphNode node : this.children) {
+            trieString += node.getKeyItem() + " -> {" + node.getChildren() + " } ";
         }
         return trieString;
     }

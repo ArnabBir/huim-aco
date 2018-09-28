@@ -5,24 +5,24 @@ import java.util.List;
 
 public class PathUtil {
 
-    private List<String> path;
+    private List<Integer> path;
     private long util;
 
-    public PathUtil(List<String> path, long util) {
+    public PathUtil(List<Integer> path, long util) {
         this.path = path;
         this.util = util;
     }
 
     public PathUtil() {
-        this.path = new ArrayList<String>();
+        this.path = new ArrayList<Integer>();
         this.util = 0;
     }
 
-    public List<String> getPath() {
+    public List<Integer> getPath() {
         return path;
     }
 
-    public void setPath(List<String> path) {
+    public void setPath(List<Integer> path) {
         this.path = path;
     }
 

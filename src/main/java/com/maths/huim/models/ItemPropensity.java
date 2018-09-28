@@ -2,27 +2,27 @@ package com.maths.huim.models;
 
 public class ItemPropensity {
 
-    String item;
+    int index;
     double propensity;
 
-    public ItemPropensity(String item, double propensity) {
-        this.item = item;
+    public ItemPropensity(int index, double propensity) {
+        this.index = index;
         this.propensity = propensity;
     }
 
     public ItemPropensity() {
     }
 
-    public String getItem() {
-        return item;
+    public int getIndex() {
+        return index;
     }
 
     public double getPropensity() {
         return propensity;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public void setPropensity(double propensity) {

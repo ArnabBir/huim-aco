@@ -2,7 +2,6 @@ package com.maths.huim.utils;
 
 import com.maths.huim.impl.ItemUtilityTableImpl;
 import com.maths.huim.models.*;
-import isula.aco.Ant;
 
 import java.util.*;
 
@@ -39,13 +38,12 @@ public class AntRoutingGraphUtils {
         List<String> keyList = new ArrayList<String>(itemTwuMap.getMap().keySet());
 
         for(int i = keyList.size()-1; i >= 0; --i) {
-
             AntRoutingGraphNode childNode = new AntRoutingGraphNode();
             childNode.setKeyItem(keyList.get(i));
             childNode.setPheromone(Constants.tauBefore);
             childNode.setDesirability(itemTwuMap.getMap().get(keyList.get(i)));
-            for(Map.Entry<String, AntRoutingGraphNode> node : antRoutingGraphNode.getChildren().entrySet()) {
-                AntRoutingGraphNode tempNode = node.getValue();
+            for(AntRoutingGraphNode node : antRoutingGraphNode.getChildren()) {
+                AntRoutingGraphNode tempNode = node;
                 childNode.addChild(tempNode);
             }
             antRoutingGraphNode.addChild(childNode);
@@ -64,8 +62,8 @@ public class AntRoutingGraphUtils {
 
         AntRoutingGraphNode antRoutingGraphNode = antRoutingGraph.getRoot();
         double delta = (double) maxPathUtil.getUtil() / Constants.minUtil;
-        for(String item : maxPathUtil.getPath()) {
-            antRoutingGraphNode = antRoutingGraphNode.getChildren().get(item);
+        for(Integer item : maxPathUtil.getPath()) {
+            antRoutingGraphNode = antRoutingGraphNode.getChildren().get(item.intValue());
             double pheromone = antRoutingGraphNode.getPheromone();
             pheromone += delta;
             antRoutingGraphNode.setPheromone(pheromone);
@@ -75,17 +73,16 @@ public class AntRoutingGraphUtils {
     public long getRemainingUnvisitedPathLength(AntRoutingGraphNode antRoutingGraphNode) {
 
         long countNodes = 0;
-        for(Map.Entry<String, AntRoutingGraphNode> pair : antRoutingGraphNode.getChildren().entrySet()) {
+        for(AntRoutingGraphNode node : antRoutingGraphNode.getChildren()) {
 
-            if(pair.getValue() == null) return countNodes;
-            if(pair.getValue().isVisited()) {
+            if(node == null) return countNodes;
+            if(node.isVisited()) {
                 continue;
             }
-            pair.getValue().setVisited(true);
+            node.setVisited(true);
             //++countNodes;
-            countNodes += 1 + getRemainingUnvisitedPathLength(pair.getValue());
+            countNodes += 1 + getRemainingUnvisitedPathLength(node);
         }
-
         return countNodes;
     }
 
@@ -111,11 +108,14 @@ public class AntRoutingGraphUtils {
                             Map<List<String>, Long> itemSetCountMap, PathUtil maxPathUtil, long countNodes) {
 
         List<String> itemSet = new ArrayList<String>();
+        List<Integer> indexList = new ArrayList<Integer>();
         ItemUtilityTableImpl itemUtilityTableImpl = new ItemUtilityTableImpl();
-        while (antRoutingGraphNode != null && !antRoutingGraphNode.getItemSet().equals("")) {
 
-            String nextItem = selectNextNode(antRoutingGraphNode);
-            antRoutingGraphNode = antRoutingGraphNode.getChildren().get(nextItem);
+        while (antRoutingGraphNode != null && (antRoutingGraphNode.getChildren().size() > 0)) {
+
+            int nextNodeIndex = selectNextNode(antRoutingGraphNode);
+            antRoutingGraphNode = antRoutingGraphNode.getChildren().get(nextNodeIndex);
+            //System.out.println(nextNodeIndex + " -> " + antRoutingGraphNode.getKeyItem());
 
             if(antRoutingGraphNode != null) {
 
@@ -125,14 +125,15 @@ public class AntRoutingGraphUtils {
                 }
 
                 if(itemSet.size() == 0) {
-
-                    itemSet.add(nextItem);
+                    indexList.add(nextNodeIndex);
+                    itemSet.add(antRoutingGraphNode.getKeyItem());
                 }
                 else {
 
-                    ItemUtilityTable itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(itemSet), itemUtilityTableMap.get(Arrays.asList(nextItem)));
-                    removeItemSetCout(itemUtilityTableMap, itemSet, nextItem, itemSetCountMap, itemUtilityTableImpl);
-                    itemSet.add(nextItem);
+                    ItemUtilityTable itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(itemSet), itemUtilityTableMap.get(Arrays.asList(antRoutingGraphNode.getKeyItem())));
+                    removeItemSetCout(itemUtilityTableMap, itemSet, antRoutingGraphNode.getKeyItem(), itemSetCountMap, itemUtilityTableImpl);
+                    itemSet.add(antRoutingGraphNode.getKeyItem());
+                    indexList.add(nextNodeIndex);
                     itemUtilityTableMap.put(itemSet, itemUtilityTable);
                     localUpdatePheromone(antRoutingGraphNode);
 
@@ -143,7 +144,7 @@ public class AntRoutingGraphUtils {
 
                         if(sumItemUtility > maxPathUtil.getUtil()) {
                             maxPathUtil.setUtil(sumItemUtility);
-                            maxPathUtil.setPath(itemSet);
+                            maxPathUtil.setPath(indexList);
                         }
                         incrementItemSetCountMap(itemSetCountMap, itemSet);
                     }
@@ -158,25 +159,27 @@ public class AntRoutingGraphUtils {
         return countNodes;
     }
 
-    public String selectNextNode(AntRoutingGraphNode antRoutingGraphNode) {
+    public int selectNextNode(AntRoutingGraphNode antRoutingGraphNode) {
 
-        String keyItem = "";
+        int keyNode = 0;
         double q = Math.random();
         double sumPropensity = 0;
         List<ItemPropensity> itemPropensityList = new ArrayList<ItemPropensity>();
-        ItemPropensity maxItemPropensity = new ItemPropensity("", 0);
+        ItemPropensity maxItemPropensity = new ItemPropensity(0, 0);
 
-        for(Map.Entry<String, AntRoutingGraphNode> pair : antRoutingGraphNode.getChildren().entrySet()) {
-            double propensity = Math.pow(pair.getValue().getPheromone(), Constants.alpha) * Math.pow(pair.getValue().getDesirability(), Constants.beta);
+        List<AntRoutingGraphNode> childNodeList = antRoutingGraphNode.getChildren();
+
+        for(int i = 0; i < childNodeList.size(); ++i) {
+            double propensity = Math.pow(childNodeList.get(i).getPheromone(), Constants.alpha) * Math.pow(childNodeList.get(i).getDesirability(), Constants.beta);
             sumPropensity += propensity;
-            itemPropensityList.add(new ItemPropensity(pair.getKey(), propensity));
+            itemPropensityList.add(new ItemPropensity(i, propensity));
             if(propensity > maxItemPropensity.getPropensity()) {
-                maxItemPropensity = new ItemPropensity(pair.getKey(), propensity);
+                maxItemPropensity = new ItemPropensity(i, propensity);
             }
         }
 
         if(q < Constants.q0) {
-            keyItem = maxItemPropensity.getItem();
+            keyNode = maxItemPropensity.getIndex();
         }
         else {
             double randFraction = Math.random();
@@ -186,29 +189,29 @@ public class AntRoutingGraphUtils {
             for(ItemPropensity itemPropensity : itemPropensityList) {
                 initPropensity += itemPropensity.getPropensity();
                 if(initPropensity >= randomPropensity) {
-                    keyItem = itemPropensity.getItem();
+                    keyNode = itemPropensity.getIndex();
                     break;
                 }
             }
         }
 
-        return keyItem;
+        return keyNode;
     }
 
     public void insert(AntRoutingGraph antRoutingGraph, List<String> itemSet) {
 
-        Map<String, AntRoutingGraphNode> children = antRoutingGraph.getRoot().getChildren();
+        List<AntRoutingGraphNode> children = antRoutingGraph.getRoot().getChildren();
 
         for(int i = 0; i < itemSet.size(); ++i) {
 
             String item = itemSet.get(i);
             AntRoutingGraphNode t;
 
-            if(children.containsKey(item)){
-                t = children.get(item);
+            if(children.get(i).equals(item)){
+                t = children.get(i);
             }else{
                 t = new AntRoutingGraphNode(item);
-                children.put(item, t);
+                children.add(t);
             }
 
             children = t.getChildren();
@@ -233,12 +236,12 @@ public class AntRoutingGraphUtils {
 
     public AntRoutingGraphNode searchNode(AntRoutingGraph antRoutingGraph, List<String> itemSet) {
 
-        Map<String, AntRoutingGraphNode> children = antRoutingGraph.getRoot().getChildren();
+        List<AntRoutingGraphNode> children = antRoutingGraph.getRoot().getChildren();
         AntRoutingGraphNode t = null;
         for(int i = 0; i < itemSet.size(); ++i) {
             String item = itemSet.get(i);
-            if(children.containsKey(item)) {
-                t = children.get(item);
+            if(children.get(i).equals(item)) {
+                t = children.get(i);
                 children = t.getChildren();
             }else{
                 return null;
@@ -270,7 +273,7 @@ public class AntRoutingGraphUtils {
         }
 
         String item = word.get(index);
-        AntRoutingGraphNode node = current.getChildren().get(item);
+        AntRoutingGraphNode node = current.getChildren().get(0);
         if (node == null)   return false;
 
         boolean shouldDeleteCurrentNode = delete( node, word, index + 1) && !node.isVisited();
