@@ -7,15 +7,33 @@ import com.maths.huim.models.*;
 import com.maths.huim.utils.AntRoutingGraphUtils;
 import com.maths.huim.utils.ItemTwuMapUtils;
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.util.*;
 
 public class driver {
 
     public static void main(String [] args) {
 
+        File file = new File("data");
+        String[] directories = file.list(new FilenameFilter() {
+            @Override
+            public boolean accept(File current, String name) {
+                return new File(current, name).isDirectory();
+            }
+        });
+
+        for (int i = 0; i < directories.length; ++i) {
+            System.out.println(i + 1 + ". " + directories[i]);
+        }
+
+        System.out.print("\nSelect the dataset : ");
+        Scanner sc = new Scanner(System.in);
+        int index = sc.nextInt();
+
         // Fetching transactions
         Set<String> itemSet = new HashSet<String>();
-        List<Transaction> transactions = (new TransactionDao()).fetch("retail_utility_spmf", itemSet);
+        List<Transaction> transactions = (new TransactionDao()).fetch(directories[index - 1], itemSet);
 
         // Calculating item twu map
         ItemTwuMapImpl itemTwuMapImpl = new ItemTwuMapImpl();
