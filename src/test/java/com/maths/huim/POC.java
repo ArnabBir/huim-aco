@@ -10,9 +10,6 @@ import com.maths.huim.utils.AntRoutingGraphUtils;
 import com.maths.huim.utils.ItemTwuMapUtils;
 
 import org.junit.*;
-
-
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class POC {
@@ -22,7 +19,7 @@ public class POC {
 
         // Fetching transactions
         Set<String> itemSet = new HashSet<String>();
-        List<Transaction> transactions = (new TransactionDao()).fetch("connect_utility_spmf", itemSet);
+        List<Transaction> transactions = (new TransactionDao()).fetch("retail_utility_spmf", itemSet);
 
         // Calculating item twu map
         ItemTwuMapImpl itemTwuMapImpl = new ItemTwuMapImpl();
@@ -55,21 +52,21 @@ public class POC {
         Map<List<String>, Long> itemSetCountMap = new HashMap<List<String>, Long>();
         long countNodes = 0;
 
-        PathUtil maxPathUtil = new PathUtil();
         long keyCount = itemTwuMap.getMap().keySet().size();
         itemTwuMap = null;
 
-
+        int x = 0;
         for(int g = 0; g < Constants.maxG && countNodes < keyCount; ++g) {
-            maxPathUtil = new PathUtil();
+            PathUtil maxPathUtil = new PathUtil();
             for (int i = 0; i < Constants.antCount && countNodes < keyCount; ++i) {
                 countNodes += antRoutingGraphUtils.antTraverse(antRoutingGraph.getRoot(), itemUtilityTableMap, itemSetCountMap, maxPathUtil, 0);
+                ++x;
             }
             //System.out.println(maxPathUtil);
             if(maxPathUtil.getUtil() > 0) {     // GLOBAL UPDATE IS NOT CONVERGING
                 antRoutingGraphUtils.globalUpdatePheromone(antRoutingGraph, maxPathUtil);
             }
-            System.out.println(g);
+            System.out.println(x);
         }
 
         System.out.println(keyCount + " -> " + countNodes);

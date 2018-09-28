@@ -148,7 +148,7 @@ public class AntRoutingGraphUtils {
                         incrementItemSetCountMap(itemSetCountMap, itemSet);
                     }
                     else if(sumItemUtility + sumResidualUtility < Constants.minUtil) {
-                        countNodes += getRemainingUnvisitedPathLength(antRoutingGraphNode);
+                        //countNodes += getRemainingUnvisitedPathLength(antRoutingGraphNode);
                         return countNodes;
                     }
                 }
