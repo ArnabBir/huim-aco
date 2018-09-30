@@ -70,9 +70,9 @@ public class driver {
 
         System.out.println("Total node count : " + keyCount);
         int x = 0;
-        for (int g = 0; g < Constants.maxG && countNodes < keyCount; ++g) {
+        for (int g = 0; g < Constants.maxG /*&& countNodes < keyCount*/; ++g) {
             PathUtil maxPathUtil = new PathUtil();
-            for (int i = 0; i < Constants.antCount && countNodes < keyCount; ++i) {
+            for (int i = 0; i < Constants.antCount /*&& countNodes < keyCount*/; ++i) {
                 countNodes += antRoutingGraphUtils.antTraverse(antRoutingGraph.getRoot(), itemUtilityTableMap, itemSetCountMap, maxPathUtil, 0);
                 ++x;
             }
