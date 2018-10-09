@@ -2,22 +2,12 @@ package com.maths.huim.models;
 
 public class ItemTransactionUtility {
 
-    private int tid;
     private long itemUtility;
     private long residualUtility;
 
     public ItemTransactionUtility(int tid, long itemUtility, long residualUtility) {
-        this.tid = tid;
         this.itemUtility = itemUtility;
         this.residualUtility = residualUtility;
-    }
-
-    public int getTid() {
-        return tid;
-    }
-
-    public void setTid(int tid) {
-        this.tid = tid;
     }
 
     public long getItemUtility() {
@@ -39,7 +29,6 @@ public class ItemTransactionUtility {
     @Override
     public String toString() {
         return "ItemTransactionUtility{" +
-                "tid=" + tid +
                 ", itemUtility=" + itemUtility +
                 ", residualUtility=" + residualUtility +
                 '}';

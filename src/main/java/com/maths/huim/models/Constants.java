@@ -2,7 +2,7 @@ package com.maths.huim.models;
 
 public class Constants {
 
-    public static final long minUtil = 40;
+    public static final long minUtil = 30;
     public static final int maxG = 50;
     public static final long antCount = 100;
     public static final double alpha = 1.0;

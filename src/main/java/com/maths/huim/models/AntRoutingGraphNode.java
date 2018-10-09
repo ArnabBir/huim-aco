@@ -5,9 +5,7 @@ import java.util.*;
 public class AntRoutingGraphNode {
 
     private String keyItem;
-    private List<String> itemSet;
     private List<AntRoutingGraphNode> children;
-    private double weight;
     private double pheromone;
     private double desirability;
     private boolean visited;
@@ -15,8 +13,7 @@ public class AntRoutingGraphNode {
     public AntRoutingGraphNode() {
 
         this.keyItem = "";
-        this.itemSet = new ArrayList<String>();
-        this.children = new ArrayList<AntRoutingGraphNode>();
+        this.children = new ArrayList<AntRoutingGraphNode>(1);
         this.visited = false;
         this.pheromone = Constants.tauBefore;
         this.desirability = 0.0;
@@ -24,7 +21,6 @@ public class AntRoutingGraphNode {
 
     public AntRoutingGraphNode(String keyItem){
         this.keyItem = keyItem;
-        this.setItemSet(Arrays.asList(keyItem));
     }
 
     public void addChild(AntRoutingGraphNode antRoutingGraphNode) {
@@ -40,20 +36,8 @@ public class AntRoutingGraphNode {
         this.keyItem = keyItem;
     }
 
-    public List<String> getItemSet() {
-        return itemSet;
-    }
-
-    public void setItemSet(List<String> itemSet) {
-        this.itemSet = itemSet;
-    }
-
     public List<AntRoutingGraphNode> getChildren() {
         return this.children;
-    }
-
-    public void setChildren(List<AntRoutingGraphNode> children) {
-        this.children = children;
     }
 
     public boolean isVisited() {
