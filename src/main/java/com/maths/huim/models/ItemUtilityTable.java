@@ -5,10 +5,10 @@ import java.util.Map;
 
 public class ItemUtilityTable {
 
-    private List<String> itemSet;
+    private List<Integer> itemSet;
     private Map<Integer, ItemTransactionUtility> itemTransactionUtilities;
 
-    public ItemUtilityTable(List<String> itemSet, Map<Integer, ItemTransactionUtility> itemTransactionUtilities) {
+    public ItemUtilityTable(List<Integer> itemSet, Map<Integer, ItemTransactionUtility> itemTransactionUtilities) {
         this.itemSet = itemSet;
         this.itemTransactionUtilities = itemTransactionUtilities;
     }
@@ -16,11 +16,11 @@ public class ItemUtilityTable {
     public ItemUtilityTable() { }
 
 
-    public List<String> getItemSet() {
+    public List<Integer> getItemSet() {
         return itemSet;
     }
 
-    public void setItemSet(List<String> itemSet) {
+    public void setItemSet(List<Integer> itemSet) {
         this.itemSet = itemSet;
     }
 

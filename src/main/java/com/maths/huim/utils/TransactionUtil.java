@@ -6,9 +6,9 @@ import java.util.Map;
 
 public class TransactionUtil {
 
-    public void updateItemCountMap(Transaction transaction, String item, Long count) {
+    public void updateItemCountMap(Transaction transaction, Integer item, Long count) {
 
-        Map<String, Long> map = transaction.getItemCountMap();
+        Map<Integer, Long> map = transaction.getItemCountMap();
         map.put(item, count);
         transaction.setItemCountMap(map);
     }

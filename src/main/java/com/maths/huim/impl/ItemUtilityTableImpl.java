@@ -8,11 +8,11 @@ import java.util.stream.Stream;
 
 public class ItemUtilityTableImpl {
 
-    public Map< List<String>, ItemUtilityTable> init(List<Transaction> transactions, ItemTwuMap itemTwuMap) {
+    public Map< List<Integer>, ItemUtilityTable> init(List<Transaction> transactions, ItemTwuMap itemTwuMap) {
 
         List<Transaction> trns = transactions;
-        Map<List<String>, ItemUtilityTable> itemUtilityTableMap = new LinkedHashMap<List<String>, ItemUtilityTable>();
-        for(Map.Entry<String, Long> itemTwu: itemTwuMap.getMap().entrySet()) {
+        Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap = new LinkedHashMap<List<Integer>, ItemUtilityTable>();
+        for(Map.Entry<Integer, Long> itemTwu: itemTwuMap.getMap().entrySet()) {
             Map<Integer, ItemTransactionUtility> itemTransactionUtilityMap = new HashMap<Integer, ItemTransactionUtility>();
             for(Transaction transaction : trns) {
                 long totalUtil = transaction.getTotalUtil();
@@ -49,7 +49,7 @@ public class ItemUtilityTableImpl {
 
     public ItemUtilityTable computeClosure(ItemUtilityTable table1, ItemUtilityTable table2) { // ASSUMING THE SECOND TABLE IS A PRIMARY ONE
 
-        List<String> unionItemSet = Stream.concat(table1.getItemSet().stream(), table2.getItemSet().stream()).collect(Collectors.toList());
+        List<Integer> unionItemSet = Stream.concat(table1.getItemSet().stream(), table2.getItemSet().stream()).collect(Collectors.toList());
 
         Map<Integer, ItemTransactionUtility> itemTransactionUtilityMap = new HashMap<Integer, ItemTransactionUtility>();
         for(Map.Entry<Integer, ItemTransactionUtility> map : table1.getItemTransactionUtilities().entrySet()) {

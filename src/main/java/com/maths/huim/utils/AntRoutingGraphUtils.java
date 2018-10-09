@@ -19,7 +19,7 @@ public class AntRoutingGraphUtils {
     public void initGraph(AntRoutingGraphNode antRoutingGraphNode, ItemTwuMap itemTwuMap) {
 
         AntRoutingGraphNode childNode;
-        for(Map.Entry<String, Long> pair: itemTwuMap.getMap().entrySet()) {
+        for(Map.Entry<Integer, Long> pair: itemTwuMap.getMap().entrySet()) {
 
             childNode = new AntRoutingGraphNode();
             childNode.setKeyItem(pair.getKey());
@@ -35,7 +35,7 @@ public class AntRoutingGraphUtils {
 
         AntRoutingGraphNode antRoutingGraphNode = new AntRoutingGraphNode();
         List<AntRoutingGraphNode> nodeList = new ArrayList<AntRoutingGraphNode>();
-        List<String> keyList = new ArrayList<String>(itemTwuMap.getMap().keySet());
+        List<Integer> keyList = new ArrayList<Integer>(itemTwuMap.getMap().keySet());
 
         for(int i = keyList.size()-1; i >= 0; --i) {
             AntRoutingGraphNode childNode = new AntRoutingGraphNode();
@@ -87,7 +87,7 @@ public class AntRoutingGraphUtils {
     }
 
     // Check the closure property and remove the unnecessary instances
-    public void removeItemSetCount(Map<List<String>, ItemUtilityTable> itemUtilityTableMap, List<String> itemSet, String nextItem, Map<List<String>, Long> itemSetCountMap, ItemUtilityTableImpl itemUtilityTableImpl) {
+    public void removeItemSetCount(Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap, List<Integer> itemSet, Integer nextItem, Map<List<Integer>, Long> itemSetCountMap, ItemUtilityTableImpl itemUtilityTableImpl) {
 
         if(itemUtilityTableImpl.isClosureCheck(itemUtilityTableMap.get(itemSet), itemUtilityTableMap.get(Arrays.asList(nextItem)))) {
 
@@ -95,19 +95,19 @@ public class AntRoutingGraphUtils {
         }
     }
 
-    public void incrementItemSetCountMap(Map<List<String>, Long> itemSetCountMap, List<String> itemSet) {
+    public void incrementItemSetCountMap(Map<List<Integer>, Long> itemSetCountMap, List<Integer> itemSet) {
 
         long itemSetCount = 0;
         if(itemSetCountMap.containsKey(new ArrayList<>(itemSet))) {
-            itemSetCount = itemSetCountMap.get(new ArrayList<String>(itemSet)).longValue();
+            itemSetCount = itemSetCountMap.get(new ArrayList<Integer>(itemSet)).longValue();
         }
         itemSetCountMap.put(new ArrayList<>(itemSet), itemSetCount + 1);
     }
 
-    public long antTraverse(AntRoutingGraphNode antRoutingGraphNode, Map<List<String>, ItemUtilityTable> itemUtilityTableMap,
-                            Map<List<String>, Long> itemSetCountMap, PathUtil maxPathUtil, long countNodes) {
+    public long antTraverse(AntRoutingGraphNode antRoutingGraphNode, Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap,
+                            Map<List<Integer>, Long> itemSetCountMap, PathUtil maxPathUtil, long countNodes) {
 
-        List<String> itemSet = new ArrayList<String>();
+        List<Integer> itemSet = new ArrayList<Integer>();
         List<Integer> indexList = new ArrayList<Integer>();
         ItemUtilityTableImpl itemUtilityTableImpl = new ItemUtilityTableImpl();
 
@@ -203,13 +203,13 @@ public class AntRoutingGraphUtils {
         return keyNode;
     }
 
-    public void insert(AntRoutingGraph antRoutingGraph, List<String> itemSet) {
+    public void insert(AntRoutingGraph antRoutingGraph, List<Integer> itemSet) {
 
         List<AntRoutingGraphNode> children = antRoutingGraph.getRoot().getChildren();
 
         for(int i = 0; i < itemSet.size(); ++i) {
 
-            String item = itemSet.get(i);
+            Integer item = itemSet.get(i);
             AntRoutingGraphNode t;
 
             if(children.get(i).equals(item)){
@@ -230,7 +230,7 @@ public class AntRoutingGraphUtils {
 
     // Returns if there is any word in the antRoutingGraph
     // that starts with the given prefix.
-    public boolean startsWith(AntRoutingGraph antRoutingGraph, List<String> itemSets) {
+    public boolean startsWith(AntRoutingGraph antRoutingGraph, List<Integer> itemSets) {
 
         if(searchNode(antRoutingGraph, itemSets) == null)
             return false;
@@ -238,12 +238,12 @@ public class AntRoutingGraphUtils {
             return true;
     }
 
-    public AntRoutingGraphNode searchNode(AntRoutingGraph antRoutingGraph, List<String> itemSet) {
+    public AntRoutingGraphNode searchNode(AntRoutingGraph antRoutingGraph, List<Integer> itemSet) {
 
         List<AntRoutingGraphNode> children = antRoutingGraph.getRoot().getChildren();
         AntRoutingGraphNode t = null;
         for(int i = 0; i < itemSet.size(); ++i) {
-            String item = itemSet.get(i);
+            Integer item = itemSet.get(i);
             if(children.get(i).equals(item)) {
                 t = children.get(i);
                 children = t.getChildren();
@@ -255,18 +255,18 @@ public class AntRoutingGraphUtils {
     }
 
     // Returns if the word is in the antRoutingGraph.
-    public boolean search(AntRoutingGraph antRoutingGraph, List<String> itemSets) {
+    public boolean search(AntRoutingGraph antRoutingGraph, List<Integer> itemSets) {
 
         AntRoutingGraphNode t = searchNode(antRoutingGraph, itemSets);
         if(t != null && t.isVisited()) return true;
         else    return false;
     }
 
-    public void delete(AntRoutingGraph antRoutingGraph, List<String> itemSets) {
+    public void delete(AntRoutingGraph antRoutingGraph, List<Integer> itemSets) {
         delete( antRoutingGraph.getRoot(), itemSets, 0);
     }
 
-    private boolean delete(AntRoutingGraphNode current, List<String> word, int index) {
+    private boolean delete(AntRoutingGraphNode current, List<Integer> word, int index) {
 
         if (index == word.size()) {
             if (!current.isVisited()) {
@@ -276,7 +276,7 @@ public class AntRoutingGraphUtils {
             return current.getChildren().isEmpty();
         }
 
-        String item = word.get(index);
+        Integer item = word.get(index);
         AntRoutingGraphNode node = current.getChildren().get(0);
         if (node == null)   return false;
 

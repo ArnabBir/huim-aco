@@ -5,14 +5,14 @@ import java.util.Map;
 
 public interface ItemParamMap {
 
-    public Map<String, Object> map = new HashMap<String, Object>();
+    public Map<Integer, Object> map = new HashMap<Integer, Object>();
 
-    public Map<String, Long> getMap();
+    public Map<Integer, Long> getMap();
 
-    public void setMap(Map<String, Long> map);
+    public void setMap(Map<Integer, Long> map);
 
-    public Long getParam(String key);
+    public Long getParam(Integer key);
 
-    public Long setParam(String key, Long value);
+    public Long setParam(Integer key, Long value);
 
 }

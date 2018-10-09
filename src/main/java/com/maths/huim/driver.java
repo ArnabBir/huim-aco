@@ -31,7 +31,7 @@ public class driver {
         Scanner sc = new Scanner(System.in);
         int index = sc.nextInt();
         // Fetching transactions
-        Set<String> itemSet = new HashSet<String>();
+        Set<Integer> itemSet = new HashSet<Integer>();
         List<Transaction> transactions = (new TransactionDao()).fetch(directories[index - 1], itemSet);
 
         // Calculating item twu map
@@ -51,7 +51,7 @@ public class driver {
         System.out.println("Hello Ji 2!");
         // Calculating Item Utility Mapping
         ItemUtilityTableImpl itemUtilityTableImpl = new ItemUtilityTableImpl();
-        Map<List<String>, ItemUtilityTable> itemUtilityTableMap = itemUtilityTableImpl.init(transactions, itemTwuMap);
+        Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap = itemUtilityTableImpl.init(transactions, itemTwuMap);
         transactions = null;
         itemUtilityTableImpl = null;
         System.out.println("Hello Ji 3!");
@@ -62,7 +62,7 @@ public class driver {
         //System.out.println(antRoutingGraph);
         System.out.println("Hello Ji 4!");
 
-        Map<List<String>, Long> itemSetCountMap = new HashMap<List<String>, Long>();
+        Map<List<Integer>, Long> itemSetCountMap = new HashMap<List<Integer>, Long>();
         long countNodes = 0;
 
         long keyCount = itemTwuMap.getMap().keySet().size();

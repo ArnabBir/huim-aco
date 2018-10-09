@@ -7,40 +7,40 @@ import java.util.Map;
 
 public class ItemTwuMap implements ItemParamMap {
 
-    private Map<String, Long> map;
+    private Map<Integer, Long> map;
 
-    public ItemTwuMap(Map<String, Long> map) {
+    public ItemTwuMap(Map<Integer, Long> map) {
         this.map = map;
     }
 
-    public Map<String, Long> getMap() {
+    public Map<Integer, Long> getMap() {
         return map;
     }
 
-    public void setMap(Map<String, Long> map) {
+    public void setMap(Map<Integer, Long> map) {
         this.map = map;
     }
 
-    public Long getParam(String key) {
+    public Long getParam(Integer key) {
         return map.get(key);
     }
 
-    public Long setParam(String key, Long value) {
+    public Long setParam(Integer key, Long value) {
         return map.put(key, value);
     }
 
-    public Long getTWU(String key) {
+    public Long getTWU(Integer key) {
         return getParam(key);
     }
 
-    public Long setTWU(String key, Long value) {
+    public Long setTWU(Integer key, Long value) {
         return setParam(key, value);
     }
 
-//    public ItemTwuMap getPairRemoved(String s) {
+//    public ItemTwuMap getPairRemoved(Integer s) {
 //
-//        Map<String, Long> newMap = new LinkedHashMap<>();
-//        for(Map.Entry<String, Long> pair : this.map.entrySet()) {
+//        Map<Integer, Long> newMap = new LinkedHashMap<>();
+//        for(Map.Entry<Integer, Long> pair : this.map.entrySet()) {
 //            if(!pair.getKey().equals(s)) {
 //                newMap.put(pair.getKey(), pair.getValue());
 //            }
@@ -48,11 +48,11 @@ public class ItemTwuMap implements ItemParamMap {
 //        return new ItemTwuMap(newMap);
 //    }
 
-    public ItemTwuMap getPairRemoved(String s) {
+    public ItemTwuMap getPairRemoved(Integer s) {
 
-        Map<String, Long> newMap = new LinkedHashMap<>();
+        Map<Integer, Long> newMap = new LinkedHashMap<>();
         boolean found = false;
-        for(Map.Entry<String, Long> pair : this.map.entrySet()) {
+        for(Map.Entry<Integer, Long> pair : this.map.entrySet()) {
             if(found) {
                 newMap.put(pair.getKey(), pair.getValue());
             }

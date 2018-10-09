@@ -11,12 +11,12 @@ import java.util.Set;
 
 public class ItemTwuMapImpl {
 
-    public ItemTwuMap calculate(List<Transaction> transactions, Set<String> itemSet) {
+    public ItemTwuMap calculate(List<Transaction> transactions, Set<Integer> itemSet) {
 
-        Map<String, Long> twuMap = new HashMap<String, Long>();
+        Map<Integer, Long> twuMap = new HashMap<Integer, Long>();
 
         for(Transaction transaction : transactions) {
-            for(String pair : itemSet) {
+            for(Integer pair : itemSet) {
                 if(transaction.getItemCountMap().containsKey(pair)) {
                     if(twuMap.containsKey(pair)) {
                         twuMap.put(pair, transaction.getTotalUtil() + twuMap.get(pair));
