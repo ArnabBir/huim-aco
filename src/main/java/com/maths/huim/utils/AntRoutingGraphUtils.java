@@ -87,9 +87,9 @@ public class AntRoutingGraphUtils {
     }
 
     // Check the closure property and remove the unnecessary instances
-    public void removeItemSetCount(Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap, List<Integer> itemSet, Integer nextItem, Map<List<Integer>, Long> itemSetCountMap, ItemUtilityTableImpl itemUtilityTableImpl) {
+    public void removeItemSetCount(Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap, ItemUtilityTable itemUtilityTable, List<Integer> itemSet, Integer nextItem, Map<List<Integer>, Long> itemSetCountMap, ItemUtilityTableImpl itemUtilityTableImpl) {
 
-        if(itemUtilityTableImpl.isClosureCheck(itemUtilityTableMap.get(itemSet), itemUtilityTableMap.get(Arrays.asList(nextItem)))) {
+        if(itemUtilityTableImpl.isClosureCheck(itemUtilityTable, itemUtilityTableMap.get(Arrays.asList(nextItem)))) {
 
             itemSetCountMap.remove(new ArrayList<>(itemSet));
         }
@@ -102,6 +102,7 @@ public class AntRoutingGraphUtils {
             itemSetCount = itemSetCountMap.get(new ArrayList<Integer>(itemSet)).longValue();
         }
         itemSetCountMap.put(new ArrayList<>(itemSet), itemSetCount + 1);
+        //System.out.println(itemSetCountMap);
     }
 
     public long antTraverse(AntRoutingGraphNode antRoutingGraphNode, Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap,
@@ -110,8 +111,9 @@ public class AntRoutingGraphUtils {
         List<Integer> itemSet = new ArrayList<Integer>();
         List<Integer> indexList = new ArrayList<Integer>();
         ItemUtilityTableImpl itemUtilityTableImpl = new ItemUtilityTableImpl();
-
         boolean isSubRoute = true;
+        ItemUtilityTable itemUtilityTable = new ItemUtilityTable();
+        ItemUtilityTable prevTable = new ItemUtilityTable();
 
         while (antRoutingGraphNode != null && (antRoutingGraphNode.getChildren().size() > 0)) {
 
@@ -132,18 +134,24 @@ public class AntRoutingGraphUtils {
                     itemSet.add(antRoutingGraphNode.getKeyItem());
                 }
                 else {
-
-                    ItemUtilityTable itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(itemSet), itemUtilityTableMap.get(Arrays.asList(antRoutingGraphNode.getKeyItem())));
-                    removeItemSetCount(itemUtilityTableMap, itemSet, antRoutingGraphNode.getKeyItem(), itemSetCountMap, itemUtilityTableImpl);
+                    if(itemSet.size() == 1) {
+                        itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(itemSet), itemUtilityTableMap.get(Arrays.asList(antRoutingGraphNode.getKeyItem())));
+                    }
+                    else {
+                        itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTable, itemUtilityTableMap.get(Arrays.asList(antRoutingGraphNode.getKeyItem())));
+                        removeItemSetCount(itemUtilityTableMap, prevTable, itemSet, antRoutingGraphNode.getKeyItem(), itemSetCountMap, itemUtilityTableImpl);
+                    }
+                    prevTable = itemUtilityTable;
                     itemSet.add(antRoutingGraphNode.getKeyItem());
                     indexList.add(nextNodeIndex);
-                    itemUtilityTableMap.put(itemSet, itemUtilityTable);
+                    //itemUtilityTableMap.put(itemSet, itemUtilityTable);
                     localUpdatePheromone(antRoutingGraphNode);
 
                     long sumItemUtility = itemUtilityTableImpl.sumItemUtility(itemUtilityTable);
                     long sumResidualUtility = itemUtilityTableImpl.sumResidualUtility(itemUtilityTable);
 
                     if(sumItemUtility >= Constants.minUtil) {
+                        //System.out.println("itemSet = " + itemSet);
 
                         //if(/*!isSubRoute || */itemSetCountMap.containsKey(itemSet)) {
                             if (sumItemUtility > maxPathUtil.getUtil()) {
