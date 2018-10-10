@@ -6,6 +6,7 @@ import com.maths.huim.impl.ItemUtilityTableImpl;
 import com.maths.huim.models.*;
 import com.maths.huim.utils.AntRoutingGraphUtils;
 import com.maths.huim.utils.ItemTwuMapUtils;
+import com.maths.huim.utils.ObjectSizeFetcher;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -38,7 +39,6 @@ public class driver {
         ItemTwuMapImpl itemTwuMapImpl = new ItemTwuMapImpl();
         ItemTwuMap itemTwuMap = itemTwuMapImpl.calculate(transactions, itemSet);
         itemTwuMapImpl = null;
-
         System.out.println("Hello Ji 1!");
         //Sorting Itemset
         ItemTwuMapUtils itemTwuMapUtils = new ItemTwuMapUtils();
@@ -82,7 +82,9 @@ public class driver {
             }
             System.out.println("Nodes covered : " + countNodes);
             System.out.println("Iterations : " + x);
-            System.out.println(itemSetCountMap);
+            System.out.println(itemSetCountMap.size());
+            System.out.println("Size : itemSetCountMap = " +  + itemSetCountMap.size());
+            System.out.println("Size : itemUtilityTableMap = " + itemUtilityTableMap.size());
         }
 
         System.out.println(keyCount + " -> " + countNodes);
