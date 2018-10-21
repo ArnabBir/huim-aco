@@ -39,7 +39,7 @@ public class driver {
         ItemTwuMapImpl itemTwuMapImpl = new ItemTwuMapImpl();
         ItemTwuMap itemTwuMap = itemTwuMapImpl.calculate(transactions, itemSet);
         itemTwuMapImpl = null;
-        System.out.println("Hello Ji 1!");
+        System.out.println("Sorting and pruning itemsets...");
         //Sorting Itemset
         ItemTwuMapUtils itemTwuMapUtils = new ItemTwuMapUtils();
         itemTwuMapUtils.sortDesc(itemTwuMap);
@@ -48,46 +48,39 @@ public class driver {
         itemTwuMapUtils.prune(transactions, itemTwuMap, itemSet);
         itemSet = null;
         itemTwuMapUtils = null;
-        System.out.println("Hello Ji 2!");
+        System.out.println("Calculating Item Utility Mappings...");
         // Calculating Item Utility Mapping
         ItemUtilityTableImpl itemUtilityTableImpl = new ItemUtilityTableImpl();
         Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap = itemUtilityTableImpl.init(transactions, itemTwuMap);
         transactions = null;
         itemUtilityTableImpl = null;
-        System.out.println("Hello Ji 3!");
+        System.out.println("Creating ant routing graph...");
 
         AntRoutingGraphUtils antRoutingGraphUtils = new AntRoutingGraphUtils();
-        //AntRoutingGraph antRoutingGraph = antRoutingGraphUtils.init(itemTwuMap);
         AntRoutingGraph antRoutingGraph = antRoutingGraphUtils.bootstrapAntGraph(itemTwuMap);
-        //System.out.println(antRoutingGraph);
-        System.out.println("Hello Ji 4!");
+        System.out.println("Mining HUIs...");
 
         Map<List<Integer>, Long> itemSetCountMap = new HashMap<List<Integer>, Long>();
-        long countNodes = 0;
-
         long keyCount = itemTwuMap.getMap().keySet().size();
         itemTwuMap = null;
-
         System.out.println("Total node count : " + keyCount);
-        int x = 0;
-        for (int g = 0; g < Constants.maxG /*&& countNodes < keyCount*/; ++g) {
-            PathUtil maxPathUtil = new PathUtil();
-            for (int i = 0; i < Constants.antCount /*&& countNodes < keyCount*/; ++i) {
-                countNodes += antRoutingGraphUtils.antTraverse(antRoutingGraph.getRoot(), itemUtilityTableMap, itemSetCountMap, maxPathUtil, 0);
-                ++x;
-            }
-            //System.out.println(maxPathUtil);
-            if (maxPathUtil.getUtil() > 0) {     // GLOBAL UPDATE IS NOT CONVERGING
-                antRoutingGraphUtils.globalUpdatePheromone(antRoutingGraph, maxPathUtil);
-            }
-            System.out.println("Nodes covered : " + countNodes);
-            System.out.println("Iterations : " + x);
-            System.out.println(itemSetCountMap.size());
-            System.out.println("Size : itemSetCountMap = " +  + itemSetCountMap.size());
-            System.out.println("Size : itemUtilityTableMap = " + itemUtilityTableMap.size());
-        }
-
-        System.out.println(keyCount + " -> " + countNodes);
+//        int x = 0;
+//        for (int g = 0; g < Constants.maxG /*&& countNodes < keyCount*/; ++g) {
+//            PathUtil maxPathUtil = new PathUtil();
+//            for (int i = 0; i < Constants.antCount /*&& countNodes < keyCount*/; ++i) {
+//                countNodes += antRoutingGraphUtils.antTraverse(antRoutingGraph.getRoot(), itemUtilityTableMap, itemSetCountMap, maxPathUtil, 0);
+//                ++x;
+//            }
+//            if (maxPathUtil.getUtil() > 0) {     // GLOBAL UPDATE IS NOT CONVERGING
+//                antRoutingGraphUtils.globalUpdatePheromone(antRoutingGraph, maxPathUtil);
+//            }
+//            System.out.println("Nodes covered : " + countNodes);
+//            System.out.println("Iterations : " + x);
+//            System.out.println(itemSetCountMap.size());
+//            System.out.println("Size : itemSetCountMap = " +  + itemSetCountMap.size());
+//            System.out.println("Size : itemUtilityTableMap = " + itemUtilityTableMap.size());
+//        }
+        antRoutingGraphUtils.computeHUIs(antRoutingGraph, itemUtilityTableMap, itemSetCountMap);
         System.out.println(itemSetCountMap);
     }
 }

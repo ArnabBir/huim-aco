@@ -105,6 +105,36 @@ public class AntRoutingGraphUtils {
         //System.out.println(itemSetCountMap);
     }
 
+    public boolean checkRuleSaturation(long prevCount, long currCount) {
+        if(prevCount == 0)  return true;
+        System.out.println("Iteration Coverage = " + (double)(currCount - prevCount) / prevCount);
+        if(((double)(currCount - prevCount) / (double) prevCount) > Constants.lambda) return true;
+        return false;
+    }
+
+    public void computeHUIs(AntRoutingGraph antRoutingGraph, Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap, Map<List<Integer>, Long> itemSetCountMap) {
+
+        int iterations = 0;
+        long countNodes = 0;
+        long prevItemSetCount = 0;
+        for (int g = 0; (g < Constants.maxG) && ((g == 0 ) || checkRuleSaturation(prevItemSetCount, itemSetCountMap.size())); ++g) {
+            prevItemSetCount = itemSetCountMap.size();
+            PathUtil maxPathUtil = new PathUtil();
+            for (int i = 0; i < Constants.antCount /*&& countNodes < keyCount*/; ++i) {
+                countNodes += antTraverse(antRoutingGraph.getRoot(), itemUtilityTableMap, itemSetCountMap, maxPathUtil, 0);
+                ++iterations;
+            }
+            if (maxPathUtil.getUtil() > 0) {     // GLOBAL UPDATE IS NOT CONVERGING
+                globalUpdatePheromone(antRoutingGraph, maxPathUtil);
+            }
+            System.out.println("Items explored: " + countNodes);
+            System.out.println("Iterations : " + iterations);
+            System.out.println("HUIs Mined : " +  + itemSetCountMap.size());
+        }
+
+        System.out.println("Finally Items explored : " + countNodes);
+    }
+
     public long antTraverse(AntRoutingGraphNode antRoutingGraphNode, Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap,
                             Map<List<Integer>, Long> itemSetCountMap, PathUtil maxPathUtil, long countNodes) {
 
@@ -144,25 +174,22 @@ public class AntRoutingGraphUtils {
                     prevTable = itemUtilityTable;
                     itemSet.add(antRoutingGraphNode.getKeyItem());
                     indexList.add(nextNodeIndex);
-                    //itemUtilityTableMap.put(itemSet, itemUtilityTable);
                     localUpdatePheromone(antRoutingGraphNode);
 
                     long sumItemUtility = itemUtilityTableImpl.sumItemUtility(itemUtilityTable);
                     long sumResidualUtility = itemUtilityTableImpl.sumResidualUtility(itemUtilityTable);
 
                     if(sumItemUtility >= Constants.minUtil) {
-                        //System.out.println("itemSet = " + itemSet);
 
-                        //if(/*!isSubRoute || */itemSetCountMap.containsKey(itemSet)) {
+                        //System.out.println(sumItemUtility);
+
                             if (sumItemUtility > maxPathUtil.getUtil()) {
                                 maxPathUtil.setUtil(sumItemUtility);
                                 maxPathUtil.setPath(indexList);
                             }
                             incrementItemSetCountMap(itemSetCountMap, itemSet);
-                        //}
                     }
                     else if(sumItemUtility + sumResidualUtility < Constants.minUtil) {
-                        //countNodes += getRemainingUnvisitedPathLength(antRoutingGraphNode);
                         return countNodes;
                     }
                 }
