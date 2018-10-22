@@ -1,0 +1,8 @@
+[2, 4] ->  Rule Stats : support = 2, occurance = 10, utility = 30
+[3, 2, 4] ->  Rule Stats : support = 2, occurance = 21, utility = 34
+[5, 2, 4] ->  Rule Stats : support = 2, occurance = 3, utility = 36
+[3, 5, 2, 4] ->  Rule Stats : support = 2, occurance = 26, utility = 40
+[3, 5, 1, 2, 4, 6] ->  Rule Stats : support = 1, occurance = 8, utility = 30
+[3, 5, 1] ->  Rule Stats : support = 2, occurance = 99, utility = 31
+[5, 2] ->  Rule Stats : support = 3, occurance = 3, utility = 31
+[3, 5, 2] ->  Rule Stats : support = 3, occurance = 33, utility = 37

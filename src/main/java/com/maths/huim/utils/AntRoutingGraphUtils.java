@@ -87,7 +87,7 @@ public class AntRoutingGraphUtils {
     }
 
     // Check the closure property and remove the unnecessary instances
-    public void removeItemSetCount(Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap, ItemUtilityTable itemUtilityTable, List<Integer> itemSet, Integer nextItem, Map<List<Integer>, Long> itemSetCountMap, ItemUtilityTableImpl itemUtilityTableImpl) {
+    public void removeItemSetCount(Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap, ItemUtilityTable itemUtilityTable, List<Integer> itemSet, Integer nextItem, Map<List<Integer>, ItemSetData> itemSetCountMap, ItemUtilityTableImpl itemUtilityTableImpl) {
 
         if(itemUtilityTableImpl.isClosureCheck(itemUtilityTable, itemUtilityTableMap.get(Arrays.asList(nextItem)))) {
 
@@ -95,24 +95,23 @@ public class AntRoutingGraphUtils {
         }
     }
 
-    public void incrementItemSetCountMap(Map<List<Integer>, Long> itemSetCountMap, List<Integer> itemSet) {
+    public void updateItemSetCountMap(Map<List<Integer>, ItemSetData> itemSetCountMap, List<Integer> itemSet, long supportCount, long sumUtility) {
 
-        long itemSetCount = 0;
+        ItemSetData itemSetData = new ItemSetData();
         if(itemSetCountMap.containsKey(new ArrayList<>(itemSet))) {
-            itemSetCount = itemSetCountMap.get(new ArrayList<Integer>(itemSet)).longValue();
+            itemSetData = itemSetCountMap.get(new ArrayList<Integer>(itemSet));
         }
-        itemSetCountMap.put(new ArrayList<>(itemSet), itemSetCount + 1);
-        //System.out.println(itemSetCountMap);
+        itemSetCountMap.put(new ArrayList<>(itemSet), new ItemSetData(supportCount, sumUtility,itemSetData.getOccurance()+ 1));
     }
 
     public boolean checkRuleSaturation(long prevCount, long currCount) {
         if(prevCount == 0)  return true;
         System.out.println("Iteration Coverage = " + (double)(currCount - prevCount) / prevCount);
-        if(((double)(currCount - prevCount) / (double) prevCount) > Constants.lambda) return true;
+        if(((double)(currCount - prevCount) / (double) prevCount) >= Constants.lambda) return true;
         return false;
     }
 
-    public void computeHUIs(AntRoutingGraph antRoutingGraph, Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap, Map<List<Integer>, Long> itemSetCountMap) {
+    public void computeHUIs(AntRoutingGraph antRoutingGraph, Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap, Map<List<Integer>, ItemSetData> itemSetCountMap) {
 
         int iterations = 0;
         long countNodes = 0;
@@ -136,7 +135,7 @@ public class AntRoutingGraphUtils {
     }
 
     public long antTraverse(AntRoutingGraphNode antRoutingGraphNode, Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap,
-                            Map<List<Integer>, Long> itemSetCountMap, PathUtil maxPathUtil, long countNodes) {
+                            Map<List<Integer>, ItemSetData> itemSetCountMap, PathUtil maxPathUtil, long countNodes) {
 
         List<Integer> itemSet = new ArrayList<Integer>();
         List<Integer> indexList = new ArrayList<Integer>();
@@ -181,13 +180,12 @@ public class AntRoutingGraphUtils {
 
                     if(sumItemUtility >= Constants.minUtil) {
 
-                        //System.out.println(sumItemUtility);
-
                             if (sumItemUtility > maxPathUtil.getUtil()) {
                                 maxPathUtil.setUtil(sumItemUtility);
                                 maxPathUtil.setPath(indexList);
                             }
-                            incrementItemSetCountMap(itemSetCountMap, itemSet);
+                            ;
+                            updateItemSetCountMap(itemSetCountMap, itemSet, itemUtilityTableImpl.getTidSet(itemUtilityTable).size(), sumItemUtility);
                     }
                     else if(sumItemUtility + sumResidualUtility < Constants.minUtil) {
                         return countNodes;

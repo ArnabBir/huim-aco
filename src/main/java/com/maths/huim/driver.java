@@ -8,8 +8,7 @@ import com.maths.huim.utils.AntRoutingGraphUtils;
 import com.maths.huim.utils.ItemTwuMapUtils;
 import com.maths.huim.utils.ObjectSizeFetcher;
 
-import java.io.File;
-import java.io.FilenameFilter;
+import java.io.*;
 import java.util.*;
 
 public class driver {
@@ -31,56 +30,55 @@ public class driver {
         System.out.print("\nSelect the dataset : ");
         Scanner sc = new Scanner(System.in);
         int index = sc.nextInt();
-        // Fetching transactions
-        Set<Integer> itemSet = new HashSet<Integer>();
-        List<Transaction> transactions = (new TransactionDao()).fetch(directories[index - 1], itemSet);
 
-        // Calculating item twu map
-        ItemTwuMapImpl itemTwuMapImpl = new ItemTwuMapImpl();
+        Set<Integer> itemSet = new HashSet<Integer>();
+        List<Transaction> transactions = (new TransactionDao()).fetch(directories[index - 1], itemSet);     // Fetching transactions
+
+        ItemTwuMapImpl itemTwuMapImpl = new ItemTwuMapImpl();   // Calculating item twu map
         ItemTwuMap itemTwuMap = itemTwuMapImpl.calculate(transactions, itemSet);
         itemTwuMapImpl = null;
-        System.out.println("Sorting and pruning itemsets...");
-        //Sorting Itemset
-        ItemTwuMapUtils itemTwuMapUtils = new ItemTwuMapUtils();
-        itemTwuMapUtils.sortDesc(itemTwuMap);
+        System.out.println("Sorting and pruning itemsets...\n");
 
-        //Pruning Itemset
-        itemTwuMapUtils.prune(transactions, itemTwuMap, itemSet);
+        ItemTwuMapUtils itemTwuMapUtils = new ItemTwuMapUtils();
+        itemTwuMapUtils.prune(transactions, itemTwuMap, itemSet);   //Pruning Itemset
+        itemTwuMapUtils.sortDesc(itemTwuMap);   //Sorting Itemset
         itemSet = null;
         itemTwuMapUtils = null;
-        System.out.println("Calculating Item Utility Mappings...");
-        // Calculating Item Utility Mapping
+
+        System.out.println("Calculating Item Utility Mappings...\n");
         ItemUtilityTableImpl itemUtilityTableImpl = new ItemUtilityTableImpl();
-        Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap = itemUtilityTableImpl.init(transactions, itemTwuMap);
+        Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap = itemUtilityTableImpl.init(transactions, itemTwuMap);     // Calculating Item Utility Mapping
         transactions = null;
         itemUtilityTableImpl = null;
-        System.out.println("Creating ant routing graph...");
+        System.out.println("Creating ant routing graph...\n");
 
         AntRoutingGraphUtils antRoutingGraphUtils = new AntRoutingGraphUtils();
         AntRoutingGraph antRoutingGraph = antRoutingGraphUtils.bootstrapAntGraph(itemTwuMap);
-        System.out.println("Mining HUIs...");
 
-        Map<List<Integer>, Long> itemSetCountMap = new HashMap<List<Integer>, Long>();
+        System.out.println("Mining HUIs...\n");
+        Map<List<Integer>, ItemSetData> itemSetCountMap = new HashMap<List<Integer>, ItemSetData>();
         long keyCount = itemTwuMap.getMap().keySet().size();
         itemTwuMap = null;
-        System.out.println("Total node count : " + keyCount);
-//        int x = 0;
-//        for (int g = 0; g < Constants.maxG /*&& countNodes < keyCount*/; ++g) {
-//            PathUtil maxPathUtil = new PathUtil();
-//            for (int i = 0; i < Constants.antCount /*&& countNodes < keyCount*/; ++i) {
-//                countNodes += antRoutingGraphUtils.antTraverse(antRoutingGraph.getRoot(), itemUtilityTableMap, itemSetCountMap, maxPathUtil, 0);
-//                ++x;
-//            }
-//            if (maxPathUtil.getUtil() > 0) {     // GLOBAL UPDATE IS NOT CONVERGING
-//                antRoutingGraphUtils.globalUpdatePheromone(antRoutingGraph, maxPathUtil);
-//            }
-//            System.out.println("Nodes covered : " + countNodes);
-//            System.out.println("Iterations : " + x);
-//            System.out.println(itemSetCountMap.size());
-//            System.out.println("Size : itemSetCountMap = " +  + itemSetCountMap.size());
-//            System.out.println("Size : itemUtilityTableMap = " + itemUtilityTableMap.size());
-//        }
+
+        System.out.println("Total node count : " + keyCount + "\n");
         antRoutingGraphUtils.computeHUIs(antRoutingGraph, itemUtilityTableMap, itemSetCountMap);
-        System.out.println(itemSetCountMap);
+        System.out.println("HUIs mined... creating output\n");
+
+        FileWriter fileWriter;
+        try
+        {
+            fileWriter = new FileWriter("results/" + directories[index - 1] + ".txt");
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for(Map.Entry<List<Integer>, ItemSetData> itemData : itemSetCountMap.entrySet()) {
+                bufferedWriter.write(itemData.getKey() + " -> " + itemData.getValue() + "\n");
+            }
+            bufferedWriter.close();
+        }
+        catch (IOException excpt)
+        {
+            excpt.printStackTrace();
+        }
+        System.out.println("Output generated... check output\n");
     }
 }
