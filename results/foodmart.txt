@@ -1,53 +1,50 @@
-[1373, 391] ->  Rule Stats : support = 1, occurance = 4, utility = 1604
-[1373, 903] ->  Rule Stats : support = 1, occurance = 9, utility = 2196
-[1373, 141] ->  Rule Stats : support = 1, occurance = 1, utility = 1866
+[97] ->  Rule Stats : support = 11, occurance = 1, utility = 2006
+[869] ->  Rule Stats : support = 11, occurance = 1, utility = 6572
+[1511] ->  Rule Stats : support = 19, occurance = 1, utility = 6240
+[1373, 774] ->  Rule Stats : support = 1, occurance = 2, utility = 1210
+[1373, 391] ->  Rule Stats : support = 1, occurance = 3, utility = 1604
+[1373, 903] ->  Rule Stats : support = 1, occurance = 1, utility = 2196
+[1373, 1417] ->  Rule Stats : support = 1, occurance = 1, utility = 1802
 [1373, 1423] ->  Rule Stats : support = 1, occurance = 2, utility = 2028
-[1373, 1296] ->  Rule Stats : support = 1, occurance = 1, utility = 861
-[152, 1132] ->  Rule Stats : support = 1, occurance = 1, utility = 1531
+[1268] ->  Rule Stats : support = 17, occurance = 1, utility = 7150
+[884] ->  Rule Stats : support = 14, occurance = 1, utility = 12480
 [1373, 530] ->  Rule Stats : support = 1, occurance = 1, utility = 2208
 [1373, 1556] ->  Rule Stats : support = 1, occurance = 1, utility = 1610
 [1373, 408] ->  Rule Stats : support = 2, occurance = 1, utility = 2760
 [1373, 281] ->  Rule Stats : support = 1, occurance = 3, utility = 1869
-[1373, 924] ->  Rule Stats : support = 1, occurance = 25, utility = 2430
-[1373, 158] ->  Rule Stats : support = 1, occurance = 1, utility = 1194
+[382] ->  Rule Stats : support = 22, occurance = 1, utility = 10044
+[1373, 924] ->  Rule Stats : support = 1, occurance = 2, utility = 2430
+[715, 462] ->  Rule Stats : support = 1, occurance = 1, utility = 1101
 [1373, 1444] ->  Rule Stats : support = 1, occurance = 2, utility = 1784
-[1373, 1063] ->  Rule Stats : support = 1, occurance = 1, utility = 2033
-[1277, 588] ->  Rule Stats : support = 1, occurance = 1, utility = 1224
 [1373, 813] ->  Rule Stats : support = 1, occurance = 1, utility = 1514
-[343, 1385] ->  Rule Stats : support = 1, occurance = 1, utility = 1179
-[1373, 431] ->  Rule Stats : support = 2, occurance = 1, utility = 2832
-[1373, 1328] ->  Rule Stats : support = 1, occurance = 1, utility = 1398
-[1373, 1077] ->  Rule Stats : support = 1, occurance = 2, utility = 2552
-[853, 942] ->  Rule Stats : support = 1, occurance = 1, utility = 1244
+[533] ->  Rule Stats : support = 11, occurance = 1, utility = 8228
+[1048] ->  Rule Stats : support = 17, occurance = 1, utility = 11713
+[1373, 1077] ->  Rule Stats : support = 1, occurance = 1, utility = 2552
 [1373, 823] ->  Rule Stats : support = 1, occurance = 1, utility = 2109
+[1308] ->  Rule Stats : support = 18, occurance = 1, utility = 12642
 [1373, 824] ->  Rule Stats : support = 1, occurance = 1, utility = 1564
-[1375, 1404] ->  Rule Stats : support = 1, occurance = 1, utility = 1239
-[1373, 1113, 104] ->  Rule Stats : support = 1, occurance = 1, utility = 1205
-[1472, 191] ->  Rule Stats : support = 1, occurance = 1, utility = 1234
-[930, 484] ->  Rule Stats : support = 1, occurance = 1, utility = 1320
-[1373, 321] ->  Rule Stats : support = 1, occurance = 2, utility = 2044
-[387, 170] ->  Rule Stats : support = 1, occurance = 1, utility = 1683
-[1373, 1223] ->  Rule Stats : support = 1, occurance = 1, utility = 1375
+[1373, 1080] ->  Rule Stats : support = 1, occurance = 1, utility = 1737
+[415] ->  Rule Stats : support = 12, occurance = 1, utility = 11640
+[544] ->  Rule Stats : support = 11, occurance = 1, utility = 10915
+[1373, 191] ->  Rule Stats : support = 1, occurance = 1, utility = 1941
+[1373, 321] ->  Rule Stats : support = 1, occurance = 1, utility = 2044
+[97, 966] ->  Rule Stats : support = 1, occurance = 1, utility = 924
+[1456] ->  Rule Stats : support = 16, occurance = 1, utility = 8784
 [1373, 1357] ->  Rule Stats : support = 1, occurance = 1, utility = 1893
-[1373, 1101] ->  Rule Stats : support = 1, occurance = 1, utility = 2226
-[1373, 720] ->  Rule Stats : support = 1, occurance = 1, utility = 978
-[1328, 1484] ->  Rule Stats : support = 1, occurance = 1, utility = 1167
-[1373, 730] ->  Rule Stats : support = 1, occurance = 1, utility = 1768
-[701, 58] ->  Rule Stats : support = 1, occurance = 1, utility = 1149
-[1373, 607] ->  Rule Stats : support = 1, occurance = 1, utility = 1554
-[1373, 484] ->  Rule Stats : support = 1, occurance = 8, utility = 2168
-[1412, 1323] ->  Rule Stats : support = 1, occurance = 1, utility = 1248
-[1373, 1512, 104] ->  Rule Stats : support = 1, occurance = 1, utility = 3266
+[1336] ->  Rule Stats : support = 14, occurance = 1, utility = 14916
+[1373, 1113] ->  Rule Stats : support = 1, occurance = 1, utility = 427
+[1223] ->  Rule Stats : support = 13, occurance = 1, utility = 2478
+[713] ->  Rule Stats : support = 11, occurance = 1, utility = 13840
+[1355] ->  Rule Stats : support = 12, occurance = 1, utility = 2457
+[715] ->  Rule Stats : support = 14, occurance = 1, utility = 6665
 [1373, 486] ->  Rule Stats : support = 1, occurance = 1, utility = 1307
-[1444, 974] ->  Rule Stats : support = 1, occurance = 1, utility = 862
 [1373, 1511] ->  Rule Stats : support = 1, occurance = 1, utility = 960
-[1373, 104] ->  Rule Stats : support = 2, occurance = 44, utility = 4134
 [1373, 1512] ->  Rule Stats : support = 2, occurance = 1, utility = 3006
-[1373, 617] ->  Rule Stats : support = 1, occurance = 1, utility = 1543
-[1113, 104] ->  Rule Stats : support = 1, occurance = 1, utility = 845
-[1373, 1007] ->  Rule Stats : support = 1, occurance = 2, utility = 1628
-[1373, 1396] ->  Rule Stats : support = 1, occurance = 1, utility = 1250
-[1373, 631] ->  Rule Stats : support = 1, occurance = 2, utility = 1236
-[1373, 1529] ->  Rule Stats : support = 1, occurance = 2, utility = 1701
-[1373, 890] ->  Rule Stats : support = 1, occurance = 1, utility = 2223
-[1373, 891] ->  Rule Stats : support = 1, occurance = 1, utility = 1574
+[340] ->  Rule Stats : support = 19, occurance = 1, utility = 3213
+[1373, 1007] ->  Rule Stats : support = 1, occurance = 1, utility = 1628
+[217] ->  Rule Stats : support = 14, occurance = 1, utility = 2720
+[1373, 631] ->  Rule Stats : support = 1, occurance = 1, utility = 1236
+[1373] ->  Rule Stats : support = 25, occurance = 579, utility = 25560
+[1374] ->  Rule Stats : support = 14, occurance = 1, utility = 13872
+[350] ->  Rule Stats : support = 12, occurance = 1, utility = 5698
+[1373, 891] ->  Rule Stats : support = 1, occurance = 2, utility = 1574

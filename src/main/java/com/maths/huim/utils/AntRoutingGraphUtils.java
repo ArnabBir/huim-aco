@@ -111,7 +111,7 @@ public class AntRoutingGraphUtils {
         return false;
     }
 
-    public void computeHUIs(AntRoutingGraph antRoutingGraph, Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap, Map<List<Integer>, ItemSetData> itemSetCountMap) {
+    public void computeHUIs(AntRoutingGraph antRoutingGraph, Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap, Map<List<Integer>, ItemSetData> itemSetCountMap, long startTime) {
 
         int iterations = 0;
         long countNodes = 0;
@@ -126,9 +126,11 @@ public class AntRoutingGraphUtils {
             if (maxPathUtil.getUtil() > 0) {     // GLOBAL UPDATE IS NOT CONVERGING
                 globalUpdatePheromone(antRoutingGraph, maxPathUtil);
             }
-            System.out.println("Items explored: " + countNodes);
+
             System.out.println("Iterations : " + iterations);
-            System.out.println("HUIs Mined : " +  + itemSetCountMap.size());
+            System.out.println("Items explored: " + countNodes);
+            System.out.println("HUIs Mined : " + itemSetCountMap.size());
+            System.out.println("Time elapsed : " + (System.currentTimeMillis() - startTime) + "\n");
         }
 
         System.out.println("Finally Items explored : " + countNodes);

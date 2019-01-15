@@ -1,0 +1,3 @@
+[1, 3, 4] ->  Rule Stats : support = 2, occurance = 4, utility = 43
+[1, 3, 5] ->  Rule Stats : support = 3, occurance = 139, utility = 43
+[1, 3, 5, 4] ->  Rule Stats : support = 2, occurance = 134, utility = 46

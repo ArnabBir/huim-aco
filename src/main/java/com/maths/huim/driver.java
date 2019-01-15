@@ -6,7 +6,6 @@ import com.maths.huim.impl.ItemUtilityTableImpl;
 import com.maths.huim.models.*;
 import com.maths.huim.utils.AntRoutingGraphUtils;
 import com.maths.huim.utils.ItemTwuMapUtils;
-import com.maths.huim.utils.ObjectSizeFetcher;
 
 import java.io.*;
 import java.util.*;
@@ -30,6 +29,13 @@ public class driver {
         System.out.print("\nSelect the dataset : ");
         Scanner sc = new Scanner(System.in);
         int index = sc.nextInt();
+        System.out.print("Enter the minUtil value : ");
+        long minUtil = sc.nextLong();
+        Constants.setMinUtil(minUtil);
+        System.out.print("Enter the delta value : ");
+        double delta = sc.nextDouble();
+        Constants.setDelta(delta);
+        System.out.println("minUtil = " + Constants.minUtil + " delta = " + Constants.delta);
 
         long beforeUsedMem = Runtime.getRuntime().totalMemory()- Runtime.getRuntime().freeMemory();
         long beforeTime = System.currentTimeMillis();
@@ -64,7 +70,7 @@ public class driver {
         itemTwuMap = null;
 
         System.out.println("Total node count : " + keyCount + "\n");
-        antRoutingGraphUtils.computeHUIs(antRoutingGraph, itemUtilityTableMap, itemSetCountMap);
+        antRoutingGraphUtils.computeHUIs(antRoutingGraph, itemUtilityTableMap, itemSetCountMap, beforeTime);
         System.out.println("HUIs mined... creating output\n");
 
         FileWriter fileWriter;
