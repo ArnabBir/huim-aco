@@ -31,6 +31,9 @@ public class driver {
         Scanner sc = new Scanner(System.in);
         int index = sc.nextInt();
 
+        long beforeUsedMem = Runtime.getRuntime().totalMemory()- Runtime.getRuntime().freeMemory();
+        long beforeTime = System.currentTimeMillis();
+
         Set<Integer> itemSet = new HashSet<Integer>();
         List<Transaction> transactions = (new TransactionDao()).fetch(directories[index - 1], itemSet);     // Fetching transactions
 
@@ -80,5 +83,15 @@ public class driver {
             excpt.printStackTrace();
         }
         System.out.println("Output generated... check output\n");
+
+        long afterTime = System.currentTimeMillis();
+        long runTime = afterTime - beforeTime;
+        long afterUsedMem = Runtime.getRuntime().totalMemory()- Runtime.getRuntime().freeMemory();
+        long actualMemUsed = afterUsedMem - beforeUsedMem;
+
+        System.out.println("\nRuntime = " + runTime);
+        System.out.println("\nMemory Used = " + actualMemUsed);
+
+
     }
 }

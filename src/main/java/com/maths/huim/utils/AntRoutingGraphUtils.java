@@ -107,7 +107,7 @@ public class AntRoutingGraphUtils {
     public boolean checkRuleSaturation(long prevCount, long currCount) {
         if(prevCount == 0)  return true;
         System.out.println("Iteration Coverage = " + (double)(currCount - prevCount) / prevCount);
-        if(((double)(currCount - prevCount) / (double) prevCount) >= Constants.lambda) return true;
+        if(((double)(currCount - prevCount) / (double) prevCount) >= Constants.delta) return true;
         return false;
     }
 
@@ -161,10 +161,19 @@ public class AntRoutingGraphUtils {
                 if(itemSet.size() == 0) {
                     indexList.add(nextNodeIndex);
                     itemSet.add(antRoutingGraphNode.getKeyItem());
+                    itemUtilityTable = itemUtilityTableMap.get(itemSet);
+                    prevTable = itemUtilityTable;
+                    long sumItemUtility = itemUtilityTableImpl.sumItemUtility(itemUtilityTable);
+                    if(sumItemUtility >= Constants.minUtil) {
+                        maxPathUtil.setUtil(sumItemUtility);
+                        maxPathUtil.setPath(indexList);
+                        updateItemSetCountMap(itemSetCountMap, itemSet, itemUtilityTableImpl.getTidSet(itemUtilityTable).size(), sumItemUtility);
+                    }
                 }
                 else {
                     if(itemSet.size() == 1) {
                         itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTableMap.get(itemSet), itemUtilityTableMap.get(Arrays.asList(antRoutingGraphNode.getKeyItem())));
+                        removeItemSetCount(itemUtilityTableMap, prevTable, itemSet, antRoutingGraphNode.getKeyItem(), itemSetCountMap, itemUtilityTableImpl);
                     }
                     else {
                         itemUtilityTable = itemUtilityTableImpl.computeClosure(itemUtilityTable, itemUtilityTableMap.get(Arrays.asList(antRoutingGraphNode.getKeyItem())));
@@ -180,12 +189,12 @@ public class AntRoutingGraphUtils {
 
                     if(sumItemUtility >= Constants.minUtil) {
 
-                            if (sumItemUtility > maxPathUtil.getUtil()) {
-                                maxPathUtil.setUtil(sumItemUtility);
-                                maxPathUtil.setPath(indexList);
-                            }
-                            ;
-                            updateItemSetCountMap(itemSetCountMap, itemSet, itemUtilityTableImpl.getTidSet(itemUtilityTable).size(), sumItemUtility);
+                        if (sumItemUtility > maxPathUtil.getUtil()) {
+                            maxPathUtil.setUtil(sumItemUtility);
+                            maxPathUtil.setPath(indexList);
+                        }
+                        ;
+                        updateItemSetCountMap(itemSetCountMap, itemSet, itemUtilityTableImpl.getTidSet(itemUtilityTable).size(), sumItemUtility);
                     }
                     else if(sumItemUtility + sumResidualUtility < Constants.minUtil) {
                         return countNodes;
