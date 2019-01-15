@@ -7,11 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e26624d0-c7c9-46ba-843e-378e5455ceff" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/scripts/solaris_scripts.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/foodmart.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/foodmart.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/huim_aco_jar/huim-aco.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/huim_aco_jar/huim-aco.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/maths/huim/driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/maths/huim/driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/maths/huim/models/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/maths/huim/models/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/maths/huim/driver$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/maths/huim/driver$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/maths/huim/driver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/maths/huim/driver.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -112,22 +113,28 @@
     <session id="-349348223">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="gitignore" value="1" />
           <entry key="java" value="34" />
+          <entry key="sh" value="1" />
+          <entry key="txt" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JAVA" value="34" />
+          <entry key="PLAIN_TEXT" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="289" />
+          <entry key="sh" value="48" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="289" />
+          <entry key="PLAIN_TEXT" value="48" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -141,11 +148,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/driver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-814">
-              <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+            <state relative-caret-position="120">
+              <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/solaris_scripts.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -153,8 +172,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="163" column="41" lean-forward="true" selection-start-line="163" selection-start-column="41" selection-end-line="163" selection-end-column="41" />
+            <state relative-caret-position="180">
+              <caret line="170" column="55" lean-forward="true" selection-start-line="170" selection-start-column="55" selection-end-line="170" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -225,7 +244,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/maths/huim/models/ItemTransactionUtility.java" />
         <option value="$PROJECT_DIR$/src/com/maths/huim/models/ItemUtilityTable.java" />
         <option value="$PROJECT_DIR$/src/com/maths/huim/impl/ItemUtilityTableImpl.java" />
         <option value="$PROJECT_DIR$/src/com/maths/huim/models/Transaction.java" />
@@ -276,6 +294,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/maths/huim/models/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/maths/huim/driver.java" />
+        <option value="$PROJECT_DIR$/scripts/solaris_scripts.sh" />
       </list>
     </option>
   </component>
@@ -305,9 +324,9 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="992" />
-    <option name="y" value="-4" />
+    <option name="y" value="24" />
     <option name="width" value="928" />
-    <option name="height" value="1048" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -325,55 +344,13 @@
             <path>
               <item name="huim-aco" type="b2602c69:ProjectViewProjectNode" />
               <item name="huim-aco" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="huim-aco" type="b2602c69:ProjectViewProjectNode" />
               <item name="huim-aco" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="huim-aco" type="b2602c69:ProjectViewProjectNode" />
-              <item name="huim-aco" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="huim-aco" type="b2602c69:ProjectViewProjectNode" />
-              <item name="huim-aco" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="huim" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="huim-aco" type="b2602c69:ProjectViewProjectNode" />
-              <item name="huim-aco" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="huim" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="huim-aco" type="b2602c69:ProjectViewProjectNode" />
-              <item name="huim-aco" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="huim" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="huim-aco" type="b2602c69:ProjectViewProjectNode" />
-              <item name="huim-aco" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="huim" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="connect_utility_spmf" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -391,7 +368,7 @@
     <property name="SearchEverywhereHistoryKey" value="Con&#9;FILE&#9;file:///home/arnab/Documents/huim-aco/src/main/java/com/maths/huim/models/Constants.java&#10;Constants&#9;null&#9;null&#10;Consta&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/models/Constants.java&#10;AntRo&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java&#10;AntT&#9;FILE&#9;file:///home/arnab/huim-aco/src/test/java/com/maths/huim/utils/AntRoutingGraphUtilsTest.java&#10;driver&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/driver.java&#10;AntRout&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java&#10;ItemUti&#9;PSI&#9;JAVA://com.maths.huim.models.ItemUtilityTable&#10;ItemUtili&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/models/ItemUtilityTable.java&#10;A&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java&#10;Constant&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/models/Constants.java&#10;dr&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/driver.java&#10;Cons&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/models/Constants.java&#10;driv&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/driver.java&#10;AntG&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java&#10;C&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/models/Constants.java&#10;P&#9;FILE&#9;file:///home/arnab/huim-aco/src/test/java/com/maths/huim/POC.java&#10;Path&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/models/PathUtil.java&#10;POC&#9;FILE&#9;file:///home/arnab/huim-aco/src/test/java/com/maths/huim/POC.java&#10;Constan&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/models/Constants.java&#10;Gen&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/impl/GenChuiImpl.java&#10;GenChui&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/models/GenChui.java&#10;Tid&#9;PSI&#9;JAVA://com.maths.huim.models.ItemTransactionUtility#tid&#10;Tra&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/models/ItemTransactionUtility.java&#10;ItemT&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/impl/ItemUtilityTableImpl.java&#10;Trans&#9;FILE&#9;file:///home/arnab/huim-aco/src/main/java/com/maths/huim/models/ItemTransactionUtility.java&#10;selectNext&#9;PSI&#9;JAVA://com.maths.huim.utils.AntRoutingGraphUtils#selectNextNode&#10;Ant&#9;PSI&#9;JAVA://com.maths.huim.models.AntRoutingGraphNode" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547557695648" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547581067169" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -607,7 +584,7 @@
       <workItem from="1540133539257" duration="626000" />
       <workItem from="1540137239986" duration="16006000" />
       <workItem from="1540169115119" duration="642000" />
-      <workItem from="1547554802563" duration="2528000" />
+      <workItem from="1547554802563" duration="10967000" />
     </task>
     <servers />
   </component>
@@ -644,7 +621,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201055000" />
+    <option name="totallyTimeSpent" value="209494000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -664,7 +641,7 @@
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.4997236" weight="0.31276152" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.3294979" />
-      <window_info active="true" anchor="bottom" id="Run" order="7" sideWeight="0.4997236" visible="true" weight="0.5073222" />
+      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.4997236" visible="true" weight="0.5073222" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.39958158" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
@@ -679,36 +656,6 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
       <window_info anchor="right" id="Maven Projects" order="8" weight="0.32946378" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Capture Tool" order="0" />
-      <window_info id="Designer" order="1" />
-      <window_info id="UI Designer" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="4" visible="true" weight="0.17689331" />
-      <window_info id="Structure" order="5" weight="0.249309" />
-      <window_info id="Image Layers" order="6" />
-      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="1" weight="0.3294979" />
-      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5002764" side_tool="true" weight="0.49267784" />
-      <window_info anchor="bottom" id="Version Control" order="3" weight="0.3294979" />
-      <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.4997236" visible="true" weight="0.32322174" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.3294979" />
-      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.4997236" weight="0.49267784" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.39958158" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info anchor="right" id="Database" order="0" />
-      <window_info anchor="right" id="Palette&#9;" order="1" />
-      <window_info anchor="right" id="Capture Analysis" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Commander" order="5" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
-      <window_info anchor="right" id="Maven Projects" order="8" weight="0.32946378" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -860,8 +807,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/isula/src/isula/aco/ConfigurationProvider.java" />
-    <entry file="file://$PROJECT_DIR$/isula/src/isula/aco/AntPolicyType.java" />
     <entry file="file://$PROJECT_DIR$/isula/src/isula/aco/algorithms/maxmin/UpdatePheromoneMatrixForMaxMin.java" />
     <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/sun/reflect/NativeMethodAccessorImpl.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -904,33 +849,12 @@
     <entry file="file://$PROJECT_DIR$/data/accidents_utility_spmf/transactions.txt" />
     <entry file="file://$PROJECT_DIR$/data/kosarak_utility_spmf/transactions.txt" />
     <entry file="file://$PROJECT_DIR$/data/chess_utility_spmf/backup.txt" />
-    <entry file="file://$PROJECT_DIR$/data/base_test/transactions.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" lean-forward="true" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/db_utility/transactions.txt" />
     <entry file="file://$PROJECT_DIR$/data/mushroom_utility_SPMF/transactions.txt" />
     <entry file="file://$PROJECT_DIR$/data/foodmart/transactions.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="701">
           <caret line="4122" column="53" selection-start-line="4122" selection-start-column="53" selection-end-line="4122" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/chess_utility_spmf/transactions.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="3185" column="108" selection-start-line="3185" selection-start-column="108" selection-end-line="3185" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/BMS_utility_spmf/transactions.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="59572" column="18" selection-start-line="59572" selection-start-column="18" selection-end-line="59572" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -950,13 +874,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/chainstone_utility_spmf/transactions.txt" />
-    <entry file="file://$PROJECT_DIR$/data/connect_utility_spmf/transactions.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4125">
-          <caret line="27" column="52" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/results/db_utility.txt" />
     <entry file="file://$PROJECT_DIR$/results/connect_utility_spmf.txt" />
     <entry file="file://$PROJECT_DIR$/src/test/java/com/maths/huim/POC.java">
@@ -1123,16 +1040,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="163" column="41" lean-forward="true" selection-start-line="163" selection-start-column="41" selection-end-line="163" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/models/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1146,10 +1053,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/base_test/transactions.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="23" lean-forward="true" selection-end-line="3" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/BMS_utility_spmf/transactions.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="59561" column="11" lean-forward="true" selection-start-line="59561" selection-start-column="11" selection-end-line="59561" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/chess_utility_spmf/transactions.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="3165" column="39" selection-end-line="3195" selection-end-column="199" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/connect_utility_spmf/transactions.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1590">
+          <caret line="37" column="42" selection-end-line="67556" selection-end-column="249" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/utils/AntRoutingGraphUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="170" column="55" lean-forward="true" selection-start-line="170" selection-start-column="55" selection-end-line="170" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maths/huim/driver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-814">
-          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+        <state relative-caret-position="120">
+          <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/solaris_scripts.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
         </state>
       </provider>
     </entry>
