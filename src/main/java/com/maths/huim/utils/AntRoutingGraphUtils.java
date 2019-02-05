@@ -3,6 +3,8 @@ package com.maths.huim.utils;
 import com.maths.huim.impl.ItemUtilityTableImpl;
 import com.maths.huim.models.*;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class AntRoutingGraphUtils {
@@ -111,7 +113,7 @@ public class AntRoutingGraphUtils {
         return false;
     }
 
-    public void computeHUIs(AntRoutingGraph antRoutingGraph, Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap, Map<List<Integer>, ItemSetData> itemSetCountMap, long startTime) {
+    public void computeHUIs(AntRoutingGraph antRoutingGraph, BufferedWriter bw, Map<List<Integer>, ItemUtilityTable> itemUtilityTableMap, Map<List<Integer>, ItemSetData> itemSetCountMap, long startTime) {
 
         int iterations = 0;
         long countNodes = 0;
@@ -127,10 +129,12 @@ public class AntRoutingGraphUtils {
                 globalUpdatePheromone(antRoutingGraph, maxPathUtil);
             }
 
-            System.out.println("Iterations : " + iterations);
-            System.out.println("Items explored: " + countNodes);
-            System.out.println("HUIs Mined : " + itemSetCountMap.size());
-            System.out.println("Time elapsed : " + (System.currentTimeMillis() - startTime) + "\n");
+            try {
+                bw.write(iterations + "," + countNodes + "," + itemSetCountMap.size() + "," + (System.currentTimeMillis() - startTime) + "\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
 
         System.out.println("Finally Items explored : " + countNodes);

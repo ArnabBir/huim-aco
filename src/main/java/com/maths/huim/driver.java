@@ -34,6 +34,9 @@ public class driver {
         System.out.print("Enter the delta value : ");
         double delta = sc.nextDouble();
         Constants.setDelta(delta);
+        System.out.print("Enter the ant count value : ");
+        long antCount = sc.nextLong();
+        Constants.setAntCount(antCount);
         System.out.println("minUtil = " + Constants.minUtil + " delta = " + Constants.delta);
 
         long beforeUsedMem = Runtime.getRuntime().totalMemory()- Runtime.getRuntime().freeMemory();
@@ -68,15 +71,30 @@ public class driver {
         long keyCount = itemTwuMap.getMap().keySet().size();
         itemTwuMap = null;
 
-        System.out.println("Total node count : " + keyCount + "\n");
-        antRoutingGraphUtils.computeHUIs(antRoutingGraph, itemUtilityTableMap, itemSetCountMap, beforeTime);
-        System.out.println("HUIs mined... creating output\n");
-
         FileWriter fileWriter;
+        BufferedWriter bufferedWriter;
+
+        try {
+            fileWriter = new FileWriter("stats/" + directories[index - 1] + ".csv");
+            bufferedWriter = new BufferedWriter(fileWriter);
+            System.out.println("Total node count : " + keyCount + "\n");
+            bufferedWriter.write("iterations, items_explored, HUIs_mined, Time_elapsed\n");
+            antRoutingGraphUtils.computeHUIs(antRoutingGraph, bufferedWriter, itemUtilityTableMap, itemSetCountMap, beforeTime);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            fileWriter.close();
+            System.out.println("HUIs mined... creating output\n");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
         try
         {
             fileWriter = new FileWriter("results/" + directories[index - 1] + ".txt");
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter = new BufferedWriter(fileWriter);
 
             for(Map.Entry<List<Integer>, ItemSetData> itemData : itemSetCountMap.entrySet()) {
                 bufferedWriter.write(itemData.getKey() + " -> " + itemData.getValue() + "\n");
