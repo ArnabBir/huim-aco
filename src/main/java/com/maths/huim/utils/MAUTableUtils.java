@@ -1,5 +1,6 @@
 package com.maths.huim.utils;
 
+import com.maths.huim.models.Constants;
 import com.maths.huim.models.Transaction;
 
 import java.util.HashMap;
@@ -30,5 +31,14 @@ public class MAUTableUtils {
             }
         }
         return itemUnitProfitMap;
+    }
+
+    public Map<Integer, Double> calculateMAUTable(Map<Integer, Long> itemUnitProfitMap) {
+
+        Map<Integer, Double> tableMAU = new HashMap<Integer, Double>();
+        for(Map.Entry<Integer, Long> pair : itemUnitProfitMap.entrySet()) {
+            tableMAU.put(pair.getKey(), Math.max(Constants.glmau, Constants.beta2 * pair.getValue()));
+        }
+        return tableMAU;
     }
 }

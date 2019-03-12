@@ -13,6 +13,9 @@ public class Constants {
     public static final double q0 =0.5;
     public static double delta = 0.025;
 
+    public static final double beta2 = 1.0;
+    public static final double glmau = 1.0;
+
     public static void setMinUtil(long minUtil) {
         Constants.minUtil = minUtil;
     }
