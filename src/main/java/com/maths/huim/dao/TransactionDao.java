@@ -5,7 +5,6 @@ import com.maths.huim.models.Transaction;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 
 
@@ -35,7 +34,6 @@ public class TransactionDao {
                 }
 
                 transactions.add(new Transaction( lineCount++, itemCountMap, Long.parseLong(components.get(1))));
-
                 line = reader.readLine();
             }
         } catch (IOException e) {

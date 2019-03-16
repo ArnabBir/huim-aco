@@ -41,4 +41,15 @@ public class MAUTableUtils {
         }
         return tableMAU;
     }
+
+    public double getMinimumAverageUtilityItemset(Map<Integer, Double> tableMAU, List<Integer> itemset) {
+
+        double utility = 0.0;
+        for(int item : itemset) {
+            utility += tableMAU.get(item);
+        }
+        return utility / itemset.size();
+    }
+
+
 }
