@@ -6,10 +6,10 @@ import java.util.Map;
 public class Transaction {
 
     private int tid;
-    private Map<String, Long> itemCountMap;
+    private Map<Integer, Long> itemCountMap;
     private long totalUtil;
 
-    public Transaction(int tid, Map<String, Long> itemCountMap, long totalUtil) {
+    public Transaction(int tid, Map<Integer, Long> itemCountMap, long totalUtil) {
         this.tid = tid;
         this.itemCountMap = itemCountMap;
         this.totalUtil = totalUtil;
@@ -17,7 +17,7 @@ public class Transaction {
 
     public Transaction(int tid) {
         this.tid = tid;
-        this.itemCountMap = new HashMap<String, Long>();
+        this.itemCountMap = new HashMap<Integer, Long>();
         totalUtil = 0;
     }
 
@@ -29,11 +29,11 @@ public class Transaction {
         this.tid = tid;
     }
 
-    public Map<String, Long> getItemCountMap() {
+    public Map<Integer, Long> getItemCountMap() {
         return itemCountMap;
     }
 
-    public void setItemCountMap(Map<String, Long> itemCountMap) {
+    public void setItemCountMap(Map<Integer, Long> itemCountMap) {
         this.itemCountMap = itemCountMap;
     }
 

@@ -6,33 +6,33 @@ import java.util.Map;
 
 public class ItemUnitProfitMap implements ItemParamMap {
 
-    private Map<String, Long> map;
+    private Map<Integer, Long> map;
 
-    public ItemUnitProfitMap(Map<String, Long> map) {
+    public ItemUnitProfitMap(Map<Integer, Long> map) {
         this.map = map;
     }
 
-    public Map<String, Long> getMap() {
-        return map;
+    public Map<Integer, Long> getMap() {
+        return this.map;
     }
 
-    public void setMap(Map<String, Long> map) {
+    public void setMap(Map<Integer, Long> map) {
         this.map = map;
     }
 
-    public Long getParam(String key) {
+    public Long getParam(Integer key) {
         return map.get(key);
     }
 
-    public Long setParam(String key, Long value) {
+    public Long setParam(Integer key, Long value) {
         return map.put(key, value);
     }
 
-    public Long getUnitProfit(String key) {
+    public Long getUnitProfit(Integer key) {
         return getParam(key);
     }
 
-    public Long setUnitProfit(String key, Long value) {
+    public Long setUnitProfit(Integer key, Long value) {
         return setParam(key, value);
     }
 

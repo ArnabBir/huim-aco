@@ -12,19 +12,18 @@ public class ItemUnitProfitMapDao implements InputDao {
 
     public ItemUnitProfitMap fetch(String scenario) {
 
-        Map<String, Long> map = new HashMap<String, Long>();
-        BufferedReader reader;
-        String filePath = "data/" + scenario + "/item_unit_profit.txt";
-
+        Map<Integer, Long> map = new HashMap<Integer, Long>();
         try {
-            reader = new BufferedReader(new FileReader(filePath));
+            String filePath = "data/" + scenario + "/item_unit_profit.txt";
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line = reader.readLine();
-            List<String> items = Arrays.asList(line.split(":")[0].split(" "));
-            List<String> unitProfits = Arrays.asList(line.split(":")[1].split(" "));
-            for(int j = 0; j < items.size(); ++j) {
-                map.put(items.get(j), Long.parseLong(unitProfits.get(j)));
+            while (line != null){
+                String[] params = line.split(":");
+                int item = Integer.parseInt(params[0]);
+                long unitProfit = Long.parseLong(params[1]);
+                map.put(item, unitProfit);
+                line = reader.readLine();
             }
-
         }catch (IOException e) {
             e.printStackTrace();
         }
